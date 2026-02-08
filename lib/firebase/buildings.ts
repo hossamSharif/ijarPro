@@ -3,14 +3,11 @@
 import {
   addDoc,
   updateDoc,
-  getDocs,
   query,
   where,
   orderBy,
   Timestamp,
-  writeBatch,
 } from 'firebase/firestore';
-import { db } from './config';
 import {
   buildingsCollection,
   buildingDoc,
