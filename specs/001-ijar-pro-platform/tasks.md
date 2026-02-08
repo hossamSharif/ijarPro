@@ -42,83 +42,83 @@
 
 ### Type System & Validation
 
-- [ ] T013 [P] Create TypeScript interfaces for all entities in lib/types/models.ts per typescript-interfaces.md (BaseDocument, BilingualName, Address, Company, User, UserPermissions, Building, Apartment, Customer, Invoice, LineItem, StatusChange, Expense, Counter, AuditLogEntry)
-- [ ] T014 [P] Create accounting types in lib/types/accounting.ts (AccountType, JournalEntryType, Account, JournalLine, JournalEntry)
-- [ ] T015 [P] Create permission types in lib/types/permissions.ts (PermissionKey, DEFAULT_USER_PERMISSIONS, ADMIN_ONLY_FEATURES, UserRole)
-- [ ] T016 [P] Create ZATCA types in lib/types/zatca.ts (ZatcaTlvData)
-- [ ] T017 [P] Create Zod validation schema for company in lib/validators/company.ts
-- [ ] T018 [P] Create Zod validation schema for user in lib/validators/user.ts
-- [ ] T019 [P] Create Zod validation schema for building in lib/validators/building.ts
-- [ ] T020 [P] Create Zod validation schema for apartment in lib/validators/apartment.ts
-- [ ] T021 [P] Create Zod validation schema for customer in lib/validators/customer.ts
-- [ ] T022 [P] Create Zod validation schema for invoice (with line items) in lib/validators/invoice.ts
-- [ ] T023 [P] Create Zod validation schema for expense in lib/validators/expense.ts
-- [ ] T024 [P] Create Zod validation schema for journal entry (with balance validation) in lib/validators/journal-entry.ts
+- [x] T013 [P] Create TypeScript interfaces for all entities in lib/types/models.ts per typescript-interfaces.md (BaseDocument, BilingualName, Address, Company, User, UserPermissions, Building, Apartment, Customer, Invoice, LineItem, StatusChange, Expense, Counter, AuditLogEntry)
+- [x] T014 [P] Create accounting types in lib/types/accounting.ts (AccountType, JournalEntryType, Account, JournalLine, JournalEntry)
+- [x] T015 [P] Create permission types in lib/types/permissions.ts (PermissionKey, DEFAULT_USER_PERMISSIONS, ADMIN_ONLY_FEATURES, UserRole)
+- [x] T016 [P] Create ZATCA types in lib/types/zatca.ts (ZatcaTlvData)
+- [x] T017 [P] Create Zod validation schema for company in lib/validators/company.ts
+- [x] T018 [P] Create Zod validation schema for user in lib/validators/user.ts
+- [x] T019 [P] Create Zod validation schema for building in lib/validators/building.ts
+- [x] T020 [P] Create Zod validation schema for apartment in lib/validators/apartment.ts
+- [x] T021 [P] Create Zod validation schema for customer in lib/validators/customer.ts
+- [x] T022 [P] Create Zod validation schema for invoice (with line items) in lib/validators/invoice.ts
+- [x] T023 [P] Create Zod validation schema for expense in lib/validators/expense.ts
+- [x] T024 [P] Create Zod validation schema for journal entry (with balance validation) in lib/validators/journal-entry.ts
 
 ### Firebase Infrastructure
 
-- [ ] T025 Create Firebase client initialization with offline persistence in lib/firebase/config.ts using `persistentLocalCache({ tabManager: persistentMultipleTabManager() })` as client-only singleton
-- [ ] T026 Create typed Firestore converters and collection references for all 11 collections in lib/firebase/firestore.ts
-- [ ] T027 [P] Create Firebase Auth helpers (sign in, sign out, token refresh, onAuthStateChanged) in lib/firebase/auth.ts
-- [ ] T028 [P] Create Firebase Storage helpers (upload receipt, download URL, delete) in lib/firebase/storage.ts
-- [ ] T029 [P] Create Firestore Security Rules in firebase/firestore.rules with all helper functions and collection rules per security-rules.md
-- [ ] T030 [P] Create composite indexes in firebase/firestore.indexes.json per security-rules.md (11 indexes for invoices, journalEntries, expenses, apartments)
-- [ ] T031 [P] Create Storage Security Rules in firebase/storage.rules (authenticated upload for receipts/logos, size limits)
+- [x] T025 Create Firebase client initialization with offline persistence in lib/firebase/config.ts using `persistentLocalCache({ tabManager: persistentMultipleTabManager() })` as client-only singleton
+- [x] T026 Create typed Firestore converters and collection references for all 11 collections in lib/firebase/firestore.ts
+- [x] T027 [P] Create Firebase Auth helpers (sign in, sign out, token refresh, onAuthStateChanged) in lib/firebase/auth.ts
+- [x] T028 [P] Create Firebase Storage helpers (upload receipt, download URL, delete) in lib/firebase/storage.ts
+- [x] T029 [P] Create Firestore Security Rules in firebase/firestore.rules with all helper functions and collection rules per security-rules.md
+- [x] T030 [P] Create composite indexes in firebase/firestore.indexes.json per security-rules.md (11 indexes for invoices, journalEntries, expenses, apartments)
+- [x] T031 [P] Create Storage Security Rules in firebase/storage.rules (authenticated upload for receipts/logos, size limits)
 
 ### i18n & RTL
 
-- [ ] T032 Create next-intl routing configuration in lib/i18n/routing.ts with locales ['ar', 'en'], defaultLocale 'ar', localePrefix 'as-needed'
-- [ ] T033 Create next-intl request configuration in lib/i18n/request.ts
-- [ ] T034 Create next-intl middleware in middleware.ts
-- [ ] T035 [P] Create Arabic translation file lib/i18n/messages/ar.json with keys for all UI labels, form fields, error messages, and navigation
-- [ ] T036 [P] Create English translation file lib/i18n/messages/en.json with matching keys
+- [x] T032 Create next-intl routing configuration in lib/i18n/routing.ts with locales ['ar', 'en'], defaultLocale 'ar', localePrefix 'as-needed'
+- [x] T033 Create next-intl request configuration in lib/i18n/request.ts
+- [x] T034 Create next-intl middleware in middleware.ts
+- [x] T035 [P] Create Arabic translation file lib/i18n/messages/ar.json with keys for all UI labels, form fields, error messages, and navigation
+- [x] T036 [P] Create English translation file lib/i18n/messages/en.json with matching keys
 
 ### Layout & Auth
 
-- [ ] T037 Create root layout in app/layout.tsx (minimal — html, body, metadata)
-- [ ] T038 Create locale layout in app/[locale]/layout.tsx with Cairo + Geist Sans fonts, dir/lang attributes, next-intl provider
-- [ ] T039 [P] Create utility functions for dates (Hijri/Gregorian formatting, UTC+3) in lib/utils/dates.ts
-- [ ] T040 [P] Create utility functions for Arabic-Indic numeral formatting in lib/utils/numbers.ts
-- [ ] T041 [P] Create utility functions for SAR currency formatting in lib/utils/currency.ts
-- [ ] T042 Create authentication state hook (useAuth) in lib/hooks/use-auth.ts with Firebase Auth onAuthStateChanged, user doc listener, role/permissions
-- [ ] T043 Create typed Firestore query hooks (useCollection, useDocument with real-time listeners) in lib/hooks/use-firestore.ts
-- [ ] T044 Create permission guard hook (usePermission) and PermissionGuard component in lib/permissions/guard.tsx
-- [ ] T045 [P] Create permission feature flag definitions and defaults in lib/permissions/feature-flags.ts
-- [ ] T046 Create login page with email/password form at app/[locale]/(auth)/login/page.tsx
-- [ ] T047 Create auth route group layout at app/[locale]/(auth)/layout.tsx (centered card layout, no sidebar)
+- [x] T037 Create root layout in app/layout.tsx (minimal — html, body, metadata)
+- [x] T038 Create locale layout in app/[locale]/layout.tsx with Cairo + Geist Sans fonts, dir/lang attributes, next-intl provider
+- [x] T039 [P] Create utility functions for dates (Hijri/Gregorian formatting, UTC+3) in lib/utils/dates.ts
+- [x] T040 [P] Create utility functions for Arabic-Indic numeral formatting in lib/utils/numbers.ts
+- [x] T041 [P] Create utility functions for SAR currency formatting in lib/utils/currency.ts
+- [x] T042 Create authentication state hook (useAuth) in lib/hooks/use-auth.ts with Firebase Auth onAuthStateChanged, user doc listener, role/permissions
+- [x] T043 Create typed Firestore query hooks (useCollection, useDocument with real-time listeners) in lib/hooks/use-firestore.ts
+- [x] T044 Create permission guard hook (usePermission) and PermissionGuard component in lib/permissions/guard.tsx
+- [x] T045 [P] Create permission feature flag definitions and defaults in lib/permissions/feature-flags.ts
+- [x] T046 Create login page with email/password form at app/[locale]/(auth)/login/page.tsx
+- [x] T047 Create auth route group layout at app/[locale]/(auth)/layout.tsx (centered card layout, no sidebar)
 
 ### Dashboard Shell
 
-- [ ] T048 Create dashboard layout with sidebar and topbar at app/[locale]/(dashboard)/layout.tsx with auth guard (redirect to login if not authenticated)
-- [ ] T049 [P] Create sidebar navigation component in components/layout/sidebar.tsx with permission-based menu items
-- [ ] T050 [P] Create topbar component in components/layout/topbar.tsx with language toggle, user menu, sync indicator
-- [ ] T051 [P] Create shared bilingual input component in components/shared/bilingual-input.tsx (dual Arabic/English fields)
-- [ ] T052 [P] Create shared data table component in components/shared/data-table.tsx with RTL support, sorting, filtering
-- [ ] T053 Create admin seed script in scripts/seed-admin.ts using Firebase Admin SDK (create Auth user, set custom claims, create Firestore doc)
+- [x] T048 Create dashboard layout with sidebar and topbar at app/[locale]/(dashboard)/layout.tsx with auth guard (redirect to login if not authenticated)
+- [x] T049 [P] Create sidebar navigation component in components/layout/sidebar.tsx with permission-based menu items
+- [x] T050 [P] Create topbar component in components/layout/topbar.tsx with language toggle, user menu, sync indicator
+- [x] T051 [P] Create shared bilingual input component in components/shared/bilingual-input.tsx (dual Arabic/English fields)
+- [x] T052 [P] Create shared data table component in components/shared/data-table.tsx with RTL support, sorting, filtering
+- [x] T053 Create admin seed script in scripts/seed-admin.ts using Firebase Admin SDK (create Auth user, set custom claims, create Firestore doc)
 
 ### Accounting Engine (shared by multiple stories)
 
-- [ ] T054 Create predefined Chart of Accounts (Saudi conventions) in lib/accounting/chart-of-accounts.ts with all accounts from data-model.md (1xxx Assets through 5xxx Expenses)
-- [ ] T055 Create balance validator (totalDebits === totalCredits) in lib/accounting/balance-validator.ts
-- [ ] T056 Create journal engine with pure functions in lib/accounting/journal-engine.ts: createInvoiceEntry, createPaymentEntry, createCancellationEntry, createExpenseEntry
+- [x] T054 Create predefined Chart of Accounts (Saudi conventions) in lib/accounting/chart-of-accounts.ts with all accounts from data-model.md (1xxx Assets through 5xxx Expenses)
+- [x] T055 Create balance validator (totalDebits === totalCredits) in lib/accounting/balance-validator.ts
+- [x] T056 Create journal engine with pure functions in lib/accounting/journal-engine.ts: createInvoiceEntry, createPaymentEntry, createCancellationEntry, createExpenseEntry
 
 ### ZATCA Engine (shared by invoice stories)
 
-- [ ] T057 Create TLV encoder in lib/zatca/tlv-encoder.ts with UTF-8 TextEncoder, 5 tags, Base64 output per research.md
-- [ ] T058 Create QR code generator from TLV Base64 in lib/zatca/qr-generator.ts using qrcode library
-- [ ] T059 [P] Create ZATCA invoice field validator in lib/zatca/invoice-validator.ts
+- [x] T057 Create TLV encoder in lib/zatca/tlv-encoder.ts with UTF-8 TextEncoder, 5 tags, Base64 output per research.md
+- [x] T058 Create QR code generator from TLV Base64 in lib/zatca/qr-generator.ts using qrcode library
+- [x] T059 [P] Create ZATCA invoice field validator in lib/zatca/invoice-validator.ts
 
 ### Audit Log (shared by all stories)
 
-- [ ] T060 Create audit log write helper (addAuditEntry) in lib/firebase/firestore.ts or lib/utils/audit.ts for append-only audit logging
+- [x] T060 Create audit log write helper (addAuditEntry) in lib/firebase/firestore.ts or lib/utils/audit.ts for append-only audit logging
 
 ### Sync Infrastructure
 
-- [ ] T061 Create sync status manager in lib/sync/sync-manager.ts monitoring hasPendingWrites and fromCache with includeMetadataChanges
-- [ ] T062 [P] Create sync status hook (useSyncStatus) in lib/hooks/use-sync-status.ts
-- [ ] T063 [P] Create sync status indicator component in components/layout/sync-indicator.tsx (Synced/Syncing/Offline/Pending/Error states)
-- [ ] T064 Create invoice sequence manager in lib/sync/invoice-sequence.ts with offline temporary OFFLINE-{deviceId}-{seq} prefix strategy
-- [ ] T065 [P] Create conflict resolver with LWW and audit logging in lib/sync/conflict-resolver.ts
+- [x] T061 Create sync status manager in lib/sync/sync-manager.ts monitoring hasPendingWrites and fromCache with includeMetadataChanges
+- [x] T062 [P] Create sync status hook (useSyncStatus) in lib/hooks/use-sync-status.ts
+- [x] T063 [P] Create sync status indicator component in components/layout/sync-indicator.tsx (Synced/Syncing/Offline/Pending/Error states)
+- [x] T064 Create invoice sequence manager in lib/sync/invoice-sequence.ts with offline temporary OFFLINE-{deviceId}-{seq} prefix strategy
+- [x] T065 [P] Create conflict resolver with LWW and audit logging in lib/sync/conflict-resolver.ts
 
 **Checkpoint**: Foundation ready — user story implementation can now begin
 
@@ -134,14 +134,14 @@
 
 ### Implementation for User Story 2
 
-- [ ] T066 [P] [US2] Create building list page at app/[locale]/(dashboard)/buildings/page.tsx with data table showing all active buildings, occupancy counts, and add button
-- [ ] T067 [P] [US2] Create building form page at app/[locale]/(dashboard)/buildings/new/page.tsx with bilingual name, address, floors, description fields using react-hook-form + Zod
-- [ ] T068 [US2] Create building detail/edit page at app/[locale]/(dashboard)/buildings/[id]/page.tsx showing building info, apartment list, occupancy summary, edit/deactivate actions
-- [ ] T069 [P] [US2] Create apartment form (add apartment under building) at app/[locale]/(dashboard)/buildings/[id]/apartments/new/page.tsx with unit number, floor, rooms, area, monthly rent
-- [ ] T070 [US2] Create apartment detail/edit page at app/[locale]/(dashboard)/apartments/[id]/page.tsx with status management, customer link display, edit fields
-- [ ] T071 [US2] Implement Firestore operations for buildings: create (with initial counts=0), update, deactivate (with occupied check warning), list active per firestore-operations.md
-- [ ] T072 [US2] Implement Firestore operations for apartments: create (batch with building count update), update status (batch with building count adjustment), list by building per firestore-operations.md
-- [ ] T073 [US2] Add building and apartment CRUD audit log entries on all create/update/deactivate operations
+- [x] T066 [P] [US2] Create building list page at app/[locale]/(dashboard)/buildings/page.tsx with data table showing all active buildings, occupancy counts, and add button
+- [x] T067 [P] [US2] Create building form page at app/[locale]/(dashboard)/buildings/new/page.tsx with bilingual name, address, floors, description fields using react-hook-form + Zod
+- [x] T068 [US2] Create building detail/edit page at app/[locale]/(dashboard)/buildings/[id]/page.tsx showing building info, apartment list, occupancy summary, edit/deactivate actions
+- [x] T069 [P] [US2] Create apartment form (add apartment under building) at app/[locale]/(dashboard)/buildings/[id]/apartments/new/page.tsx with unit number, floor, rooms, area, monthly rent
+- [x] T070 [US2] Create apartment detail/edit page at app/[locale]/(dashboard)/apartments/[id]/page.tsx with status management, customer link display, edit fields
+- [x] T071 [US2] Implement Firestore operations for buildings: create (with initial counts=0), update, deactivate (with occupied check warning), list active per firestore-operations.md
+- [x] T072 [US2] Implement Firestore operations for apartments: create (batch with building count update), update status (batch with building count adjustment), list by building per firestore-operations.md
+- [x] T073 [US2] Add building and apartment CRUD audit log entries on all create/update/deactivate operations
 
 **Checkpoint**: Buildings and apartments are manageable with occupancy overview working
 
