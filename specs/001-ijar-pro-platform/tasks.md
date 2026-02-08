@@ -157,15 +157,15 @@
 
 ### Implementation for User Story 3
 
-- [ ] T074 [P] [US3] Create customer list page at app/[locale]/(dashboard)/customers/page.tsx with data table, search by name/national ID, add button
-- [ ] T075 [P] [US3] Create customer form page at app/[locale]/(dashboard)/customers/new/page.tsx with bilingual name, national ID, phone, email, nationality, ID expiry, notes
-- [ ] T076 [US3] Create customer detail page at app/[locale]/(dashboard)/customers/[id]/page.tsx showing customer info, linked apartment, invoice history, edit/deactivate actions
-- [ ] T077 [US3] Implement Firestore operations for customers: create (with nationalId uniqueness check), update, deactivate, list active, search by nationalId per firestore-operations.md
-- [ ] T078 [US3] Implement customer-apartment linking: batched write to update apartment status to occupied, set currentCustomerId/leaseStart/leaseEnd, update customer currentApartmentId/currentBuildingId, adjust building counts per firestore-operations.md
-- [ ] T079 [US3] Implement customer-apartment unlinking: batched write to revert apartment to vacant, clear customer apartment fields, adjust building counts per firestore-operations.md
-- [ ] T080 [US3] Implement customer invoice history query (invoices by customerId, ordered by createdAt desc) in customer detail page
-- [ ] T081 [P] [US3] Create shared Hijri date picker component in components/shared/hijri-date-picker.tsx for ID expiry and lease dates
-- [ ] T082 [US3] Add customer CRUD and lease linking/unlinking audit log entries
+- [x] T074 [P] [US3] Create customer list page at app/[locale]/(dashboard)/customers/page.tsx with data table, search by name/national ID, add button
+- [x] T075 [P] [US3] Create customer form page at app/[locale]/(dashboard)/customers/new/page.tsx with bilingual name, national ID, phone, email, nationality, ID expiry, notes
+- [x] T076 [US3] Create customer detail page at app/[locale]/(dashboard)/customers/[id]/page.tsx showing customer info, linked apartment, invoice history, edit/deactivate actions
+- [x] T077 [US3] Implement Firestore operations for customers: create (with nationalId uniqueness check), update, deactivate, list active, search by nationalId per firestore-operations.md
+- [x] T078 [US3] Implement customer-apartment linking: batched write to update apartment status to occupied, set currentCustomerId/leaseStart/leaseEnd, update customer currentApartmentId/currentBuildingId, adjust building counts per firestore-operations.md
+- [x] T079 [US3] Implement customer-apartment unlinking: batched write to revert apartment to vacant, clear customer apartment fields, adjust building counts per firestore-operations.md
+- [x] T080 [US3] Implement customer invoice history query (invoices by customerId, ordered by createdAt desc) in customer detail page
+- [x] T081 [P] [US3] Create shared Hijri date picker component in components/shared/hijri-date-picker.tsx for ID expiry and lease dates
+- [x] T082 [US3] Add customer CRUD and lease linking/unlinking audit log entries
 
 **Checkpoint**: Customers can be created, linked to apartments, and their invoice history viewed
 
@@ -181,16 +181,16 @@
 
 ### Implementation for User Story 1
 
-- [ ] T083 [US1] Create invoice list page at app/[locale]/(dashboard)/invoices/page.tsx with data table, status filter (Draft/Issued/Paid/Partially Paid/Overdue/Cancelled), building filter
-- [ ] T084 [US1] Create invoice form component in components/invoices/invoice-form.tsx with customer selector, apartment selector (auto-populated from customer link), rental period, line items, VAT auto-calculation
-- [ ] T085 [US1] Create new invoice page at app/[locale]/(dashboard)/invoices/new/page.tsx using invoice-form component
-- [ ] T086 [US1] Implement invoice creation Firestore operation: transaction on counters/invoices for sequential number, addDoc invoice with ZATCA QR, addDoc journal entry (DR: AR, CR: Revenue + VAT Payable), addDoc audit log — all as batched write per firestore-operations.md
-- [ ] T087 [US1] Create invoice detail/view page at app/[locale]/(dashboard)/invoices/[id]/page.tsx showing all invoice fields, QR code display, status history, action buttons (print, pay, cancel, update)
-- [ ] T088 [P] [US1] Create ZATCA QR code display component in components/invoices/zatca-qr.tsx using qrcode.react for inline rendering
-- [ ] T089 [P] [US1] Create invoice summary card component in components/invoices/invoice-card.tsx for use in list views
-- [ ] T090 [US1] Create invoice PDF generation component in components/invoices/invoice-pdf.tsx using jsPDF + jspdf-autotable with Amiri font, company logo, QR code (canvas → toDataURL → addImage), Arabic RTL layout
-- [ ] T091 [US1] Download and place Amiri TTF font file in public/fonts/Amiri-Regular.ttf for PDF embedding
-- [ ] T092 [US1] Add invoice creation audit log entries with ZATCA QR data verification
+- [x] T083 [US1] Create invoice list page at app/[locale]/(dashboard)/invoices/page.tsx with data table, status filter (Draft/Issued/Paid/Partially Paid/Overdue/Cancelled), building filter
+- [x] T084 [US1] Create invoice form component in components/invoices/invoice-form.tsx with customer selector, apartment selector (auto-populated from customer link), rental period, line items, VAT auto-calculation
+- [x] T085 [US1] Create new invoice page at app/[locale]/(dashboard)/invoices/new/page.tsx using invoice-form component
+- [x] T086 [US1] Implement invoice creation Firestore operation: transaction on counters/invoices for sequential number, addDoc invoice with ZATCA QR, addDoc journal entry (DR: AR, CR: Revenue + VAT Payable), addDoc audit log — all as batched write per firestore-operations.md
+- [x] T087 [US1] Create invoice detail/view page at app/[locale]/(dashboard)/invoices/[id]/page.tsx showing all invoice fields, QR code display, status history, action buttons (print, pay, cancel, update)
+- [x] T088 [P] [US1] Create ZATCA QR code display component in components/invoices/zatca-qr.tsx using qrcode.react for inline rendering
+- [x] T089 [P] [US1] Create invoice summary card component in components/invoices/invoice-card.tsx for use in list views
+- [x] T090 [US1] Create invoice PDF generation component in components/invoices/invoice-pdf.tsx using jsPDF + jspdf-autotable with Amiri font, company logo, QR code (canvas → toDataURL → addImage), Arabic RTL layout
+- [x] T091 [US1] Download and place Amiri TTF font file in public/fonts/Amiri-Regular.ttf for PDF embedding
+- [x] T092 [US1] Add invoice creation audit log entries with ZATCA QR data verification
 
 **Checkpoint**: Invoices can be created with ZATCA QR codes, sequential numbers, VAT, journal entries, and PDF export
 
