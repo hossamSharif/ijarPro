@@ -300,6 +300,24 @@
     "deactivate": "Deactivate",
     "activate": "Activate",
     "changePassword": "Change Password",
+    "password": "Password",
+    "confirmDeactivate": "Are you sure you want to deactivate this user? Their account will be disabled and they will not be able to log in.",
+    "confirmActivate": "Are you sure you want to reactivate this user?",
+    "created": "User created successfully",
+    "permissionsSaved": "Permissions saved successfully",
+    "deactivated": "User deactivated",
+    "activated": "User activated",
+    "usernameExists": "Username already exists",
+    "emailExists": "Email already exists",
+    "cannotDeactivateSelf": "Cannot deactivate your own account",
+    "userDetails": "User Details",
+    "noUsers": "No users found",
+    "permissionCategories": {
+      "invoices": "Invoices",
+      "management": "Management",
+      "accounting": "Accounting",
+      "general": "General"
+    },
     "permissionLabels": {
       "canCreateInvoice": "Create Invoices",
       "canUpdateInvoice": "Update Invoices",
@@ -318,7 +336,10 @@
     "title": "Profile",
     "currentPassword": "Current Password",
     "newPassword": "New Password",
-    "confirmPassword": "Confirm Password"
+    "confirmPassword": "Confirm Password",
+    "passwordChanged": "Password changed successfully",
+    "passwordMismatch": "Passwords do not match",
+    "wrongPassword": "Current password is incorrect"
   },
   "sync": {
     "synced": "Synced",

@@ -300,6 +300,24 @@
     "deactivate": "إلغاء التفعيل",
     "activate": "تفعيل",
     "changePassword": "تغيير كلمة المرور",
+    "password": "كلمة المرور",
+    "confirmDeactivate": "هل أنت متأكد من إلغاء تفعيل هذا المستخدم؟ سيتم تعطيل حسابه ولن يتمكن من تسجيل الدخول.",
+    "confirmActivate": "هل أنت متأكد من إعادة تفعيل هذا المستخدم؟",
+    "created": "تم إنشاء المستخدم بنجاح",
+    "permissionsSaved": "تم حفظ الصلاحيات بنجاح",
+    "deactivated": "تم إلغاء تفعيل المستخدم",
+    "activated": "تم تفعيل المستخدم",
+    "usernameExists": "اسم المستخدم مسجل مسبقاً",
+    "emailExists": "البريد الإلكتروني مسجل مسبقاً",
+    "cannotDeactivateSelf": "لا يمكنك إلغاء تفعيل حسابك",
+    "userDetails": "تفاصيل المستخدم",
+    "noUsers": "لا يوجد مستخدمون",
+    "permissionCategories": {
+      "invoices": "الفواتير",
+      "management": "الإدارة",
+      "accounting": "المحاسبة",
+      "general": "عام"
+    },
     "permissionLabels": {
       "canCreateInvoice": "إنشاء الفواتير",
       "canUpdateInvoice": "تعديل الفواتير",
@@ -318,7 +336,10 @@
     "title": "الملف الشخصي",
     "currentPassword": "كلمة المرور الحالية",
     "newPassword": "كلمة المرور الجديدة",
-    "confirmPassword": "تأكيد كلمة المرور"
+    "confirmPassword": "تأكيد كلمة المرور",
+    "passwordChanged": "تم تغيير كلمة المرور بنجاح",
+    "passwordMismatch": "كلمات المرور غير متطابقة",
+    "wrongPassword": "كلمة المرور الحالية غير صحيحة"
   },
   "sync": {
     "synced": "متزامن",

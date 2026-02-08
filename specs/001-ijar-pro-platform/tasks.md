@@ -246,15 +246,15 @@
 
 ### Implementation for User Story 6
 
-- [ ] T107 [US6] Create user management page at app/[locale]/(dashboard)/settings/users/page.tsx with user list, add button (admin only)
-- [ ] T108 [US6] Create user creation form/page at app/[locale]/(dashboard)/settings/users/new/page.tsx with username, bilingual name, password, phone, email fields
-- [ ] T109 [US6] Create user detail/edit page at app/[locale]/(dashboard)/settings/users/[id]/page.tsx with permission toggle matrix, activate/deactivate button
-- [ ] T110 [US6] Implement user creation: create Firebase Auth user (via API route calling Admin SDK), set custom claims { role: "user" }, create Firestore user doc with default permissions per firestore-operations.md
-- [ ] T111 [US6] Create Next.js API route at app/api/users/create/route.ts for server-side Firebase Admin SDK user creation and custom claims setting
-- [ ] T112 [US6] Implement permission update: updateDoc on users/{uid}.permissions, trigger client token refresh per firestore-operations.md
-- [ ] T113 [US6] Implement user deactivation: set isActive=false in Firestore, disable Firebase Auth account via API route, per firestore-operations.md
-- [ ] T114 [US6] Create user profile (own password change) page at app/[locale]/(dashboard)/profile/page.tsx
-- [ ] T115 [US6] Add user management audit log entries for create, permission change, activate/deactivate
+- [x] T107 [US6] Create user management page at app/[locale]/(dashboard)/settings/users/page.tsx with user list, add button (admin only)
+- [x] T108 [US6] Create user creation form/page at app/[locale]/(dashboard)/settings/users/new/page.tsx with username, bilingual name, password, phone, email fields
+- [x] T109 [US6] Create user detail/edit page at app/[locale]/(dashboard)/settings/users/[id]/page.tsx with permission toggle matrix, activate/deactivate button
+- [x] T110 [US6] Implement user creation: create Firebase Auth user (via API route calling Admin SDK), set custom claims { role: "user" }, create Firestore user doc with default permissions per firestore-operations.md
+- [x] T111 [US6] Create Next.js API route at app/api/users/create/route.ts for server-side Firebase Admin SDK user creation and custom claims setting
+- [x] T112 [US6] Implement permission update: updateDoc on users/{uid}.permissions, trigger client token refresh per firestore-operations.md
+- [x] T113 [US6] Implement user deactivation: set isActive=false in Firestore, disable Firebase Auth account via API route, per firestore-operations.md
+- [x] T114 [US6] Create user profile (own password change) page at app/[locale]/(dashboard)/profile/page.tsx
+- [x] T115 [US6] Add user management audit log entries for create, permission change, activate/deactivate
 
 **Checkpoint**: Admin can create users, toggle permissions, deactivate accounts
 
