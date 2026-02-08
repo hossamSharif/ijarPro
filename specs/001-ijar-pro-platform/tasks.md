@@ -228,11 +228,11 @@
 
 ### Implementation for User Story 5
 
-- [ ] T102 [US5] Create company profile settings page at app/[locale]/(dashboard)/settings/company/page.tsx with form for all company fields (bilingual name, logo upload, CR number, VAT number, structured bilingual address, phone, email, website, VAT rate, session timeout, expense categories)
-- [ ] T103 [US5] Implement company logo upload to Firebase Storage via lib/firebase/storage.ts with preview and URL storage
-- [ ] T104 [US5] Implement company profile read/write Firestore operations using setDoc with merge per firestore-operations.md
-- [ ] T105 [US5] Add company profile audit log entries on update
-- [ ] T106 [US5] Wire company profile data into invoice PDF header (logo, name, VAT number, address) via invoice-pdf.tsx
+- [x] T102 [US5] Create company profile settings page at app/[locale]/(dashboard)/settings/company/page.tsx with form for all company fields (bilingual name, logo upload, CR number, VAT number, structured bilingual address, phone, email, website, VAT rate, session timeout, expense categories)
+- [x] T103 [US5] Implement company logo upload to Firebase Storage via lib/firebase/storage.ts with preview and URL storage
+- [x] T104 [US5] Implement company profile read/write Firestore operations using setDoc with merge per firestore-operations.md
+- [x] T105 [US5] Add company profile audit log entries on update
+- [x] T106 [US5] Wire company profile data into invoice PDF header (logo, name, VAT number, address) via invoice-pdf.tsx
 
 **Checkpoint**: Company profile configurable by admin, data flows to invoice headers
 
