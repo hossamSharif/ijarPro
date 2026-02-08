@@ -23,7 +23,12 @@
     "total": "Total",
     "print": "Print",
     "export": "Export",
-    "currency": "SAR"
+    "currency": "SAR",
+    "selectDate": "Select date",
+    "active": "Active",
+    "inactive": "Inactive",
+    "activate": "Activate",
+    "deactivate": "Deactivate"
   },
   "auth": {
     "login": "Login",
@@ -113,7 +118,19 @@
     "linkApartment": "Link to Apartment",
     "unlinkApartment": "Unlink Apartment",
     "invoiceHistory": "Invoice History",
-    "idExpired": "ID Expired"
+    "noInvoices": "No invoices",
+    "idExpired": "ID Expired",
+    "confirmDeactivate": "Are you sure you want to deactivate this customer?",
+    "confirmUnlink": "Are you sure you want to unlink the apartment? The apartment status will be set to vacant.",
+    "nationalIdExists": "National ID already exists",
+    "selectBuilding": "Select building",
+    "selectApartment": "Select apartment",
+    "leaseStart": "Lease Start",
+    "leaseEnd": "Lease End",
+    "noLinkedApartment": "No linked apartment",
+    "searchNationalId": "Search by National ID",
+    "vacant": "Vacant",
+    "occupied": "Linked"
   },
   "invoices": {
     "title": "Invoices",
@@ -157,7 +174,33 @@
     "paymentAmount": "Payment Amount",
     "remainingBalance": "Remaining Balance",
     "zatcaQr": "ZATCA QR Code",
-    "printPdf": "Print PDF"
+    "printPdf": "Print PDF",
+    "paymentDialog": {
+      "title": "Record Payment",
+      "amountLabel": "Payment Amount",
+      "remainingLabel": "Remaining Balance",
+      "totalLabel": "Invoice Total",
+      "paidLabel": "Previously Paid",
+      "submit": "Record Payment",
+      "success": "Payment recorded successfully",
+      "exceedsBalance": "Amount exceeds remaining balance"
+    },
+    "cancelDialog": {
+      "title": "Cancel Invoice",
+      "reasonLabel": "Cancellation Reason",
+      "reasonPlaceholder": "Enter the reason for cancellation",
+      "warning": "A credit note will be created and the invoice status will be changed to cancelled. This action cannot be undone.",
+      "submit": "Confirm Cancellation",
+      "success": "Invoice cancelled successfully"
+    },
+    "updateDialog": {
+      "title": "Update Invoice",
+      "warning": "The current invoice will be cancelled and a credit note and new invoice with updated amounts will be created.",
+      "submit": "Confirm Update",
+      "success": "Invoice updated successfully"
+    },
+    "creditNoteCreated": "Credit note created",
+    "newInvoiceCreated": "New invoice created"
   },
   "expenses": {
     "title": "Expenses",

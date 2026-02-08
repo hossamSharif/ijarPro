@@ -23,7 +23,12 @@
     "total": "الإجمالي",
     "print": "طباعة",
     "export": "تصدير",
-    "currency": "ر.س"
+    "currency": "ر.س",
+    "selectDate": "اختر التاريخ",
+    "active": "نشط",
+    "inactive": "غير نشط",
+    "activate": "تفعيل",
+    "deactivate": "إلغاء التفعيل"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -113,7 +118,19 @@
     "linkApartment": "ربط بشقة",
     "unlinkApartment": "إلغاء ربط الشقة",
     "invoiceHistory": "سجل الفواتير",
-    "idExpired": "الهوية منتهية الصلاحية"
+    "noInvoices": "لا توجد فواتير",
+    "idExpired": "الهوية منتهية الصلاحية",
+    "confirmDeactivate": "هل أنت متأكد من إلغاء تفعيل هذا العميل؟",
+    "confirmUnlink": "هل أنت متأكد من إلغاء ربط الشقة؟ سيتم تحويل حالة الشقة إلى شاغرة.",
+    "nationalIdExists": "رقم الهوية مسجل مسبقاً",
+    "selectBuilding": "اختر المبنى",
+    "selectApartment": "اختر الشقة",
+    "leaseStart": "بداية العقد",
+    "leaseEnd": "نهاية العقد",
+    "noLinkedApartment": "لا توجد شقة مرتبطة",
+    "searchNationalId": "بحث برقم الهوية",
+    "vacant": "شاغرة",
+    "occupied": "مرتبط"
   },
   "invoices": {
     "title": "الفواتير",
@@ -157,7 +174,33 @@
     "paymentAmount": "مبلغ الدفعة",
     "remainingBalance": "الرصيد المتبقي",
     "zatcaQr": "رمز QR الضريبي",
-    "printPdf": "طباعة PDF"
+    "printPdf": "طباعة PDF",
+    "paymentDialog": {
+      "title": "تسجيل دفعة",
+      "amountLabel": "مبلغ الدفعة",
+      "remainingLabel": "الرصيد المتبقي",
+      "totalLabel": "إجمالي الفاتورة",
+      "paidLabel": "المدفوع سابقاً",
+      "submit": "تسجيل الدفعة",
+      "success": "تم تسجيل الدفعة بنجاح",
+      "exceedsBalance": "المبلغ يتجاوز الرصيد المتبقي"
+    },
+    "cancelDialog": {
+      "title": "إلغاء الفاتورة",
+      "reasonLabel": "سبب الإلغاء",
+      "reasonPlaceholder": "أدخل سبب إلغاء الفاتورة",
+      "warning": "سيتم إنشاء إشعار دائن وتحويل حالة الفاتورة إلى ملغاة. لا يمكن التراجع عن هذا الإجراء.",
+      "submit": "تأكيد الإلغاء",
+      "success": "تم إلغاء الفاتورة بنجاح"
+    },
+    "updateDialog": {
+      "title": "تحديث الفاتورة",
+      "warning": "سيتم إلغاء الفاتورة الحالية وإنشاء إشعار دائن وفاتورة جديدة بالمبالغ المحدثة.",
+      "submit": "تأكيد التحديث",
+      "success": "تم تحديث الفاتورة بنجاح"
+    },
+    "creditNoteCreated": "تم إنشاء إشعار دائن",
+    "newInvoiceCreated": "تم إنشاء فاتورة جديدة"
   },
   "expenses": {
     "title": "المصروفات",

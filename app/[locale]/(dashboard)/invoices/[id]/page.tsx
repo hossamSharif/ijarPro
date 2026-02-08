@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { onSnapshot, getDoc } from 'firebase/firestore';
-import { ArrowRight, FileText } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -21,6 +21,9 @@ import {
 
 import { ZatcaQr } from '@/components/invoices/zatca-qr';
 import { InvoicePdf } from '@/components/invoices/invoice-pdf';
+import { PaymentDialog } from '@/components/invoices/payment-dialog';
+import { CancelDialog } from '@/components/invoices/cancel-dialog';
+import { UpdateDialog } from '@/components/invoices/update-dialog';
 import { invoiceDoc, companyRef } from '@/lib/firebase/firestore';
 import { useAuth } from '@/lib/hooks/use-auth';
 import { formatCurrency } from '@/lib/utils/currency';
@@ -44,7 +47,7 @@ export default function InvoiceDetailPage() {
   const t = useTranslations('invoices');
   const tCommon = useTranslations('common');
   const locale = useLocale();
-  const { isAdmin, userProfile } = useAuth();
+  const { isAdmin, userProfile, firebaseUser } = useAuth();
 
   const [invoice, setInvoice] = useState<InvoiceWithId | null>(null);
   const [company, setCompany] = useState<Company | null>(null);
@@ -280,21 +283,28 @@ export default function InvoiceDetailPage() {
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3">
         <InvoicePdf invoice={invoice} company={company} locale={locale} />
-        {showPayBtn && (
-          <Button variant="default">
-            {t('recordPayment')}
-          </Button>
+        {showPayBtn && firebaseUser && userProfile && (
+          <PaymentDialog
+            invoice={invoice}
+            userId={firebaseUser.uid}
+            userName={userProfile.nameAr}
+            locale={locale}
+          />
         )}
-        {showUpdateBtn && (
-          <Button variant="outline">
-            <FileText className="me-2 h-4 w-4" />
-            {t('updateInvoice')}
-          </Button>
+        {showUpdateBtn && firebaseUser && userProfile && (
+          <UpdateDialog
+            invoice={invoice}
+            userId={firebaseUser.uid}
+            userName={userProfile.nameAr}
+            locale={locale}
+          />
         )}
-        {showCancelBtn && (
-          <Button variant="destructive">
-            {t('cancelInvoice')}
-          </Button>
+        {showCancelBtn && firebaseUser && userProfile && (
+          <CancelDialog
+            invoice={invoice}
+            userId={firebaseUser.uid}
+            userName={userProfile.nameAr}
+          />
         )}
       </div>
     </div>

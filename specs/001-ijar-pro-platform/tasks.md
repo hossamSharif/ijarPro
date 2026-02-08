@@ -206,15 +206,15 @@
 
 ### Implementation for User Story 4
 
-- [ ] T093 [US4] Implement invoice update operation: create credit note referencing original, create new debit note with updated amounts, mark original as cancelled, generate QR codes for both, create reversal + new journal entries — all as batched write per firestore-operations.md
-- [ ] T094 [US4] Implement invoice cancellation operation: create credit note with cancellation reason and QR code, mark original as cancelled (never delete), create reversal journal entry — batched write per firestore-operations.md
-- [ ] T095 [US4] Implement payment recording operation: update invoice paymentAmount/paymentDate/status (paid vs partially_paid based on amount), create journal entry (DR: Cash/Bank, CR: AR) — batched write per firestore-operations.md
-- [ ] T096 [US4] Add status transition validation: prevent update on paid/cancelled invoices, prevent cancel on already cancelled, validate payment preconditions (status must be issued/partially_paid/overdue)
-- [ ] T097 [US4] Add invoice status history tracking: append StatusChange entry with timestamp, userId, note on every status transition
-- [ ] T098 [US4] Create invoice update form/dialog on invoice detail page for editing amounts (triggers credit note + new invoice flow)
-- [ ] T099 [US4] Create payment recording form/dialog on invoice detail page with amount field, auto-calculate remaining balance
-- [ ] T100 [US4] Create cancellation dialog on invoice detail page with required reason text field
-- [ ] T101 [US4] Add invoice lifecycle audit log entries for all update, cancel, and payment actions
+- [x] T093 [US4] Implement invoice update operation: create credit note referencing original, create new debit note with updated amounts, mark original as cancelled, generate QR codes for both, create reversal + new journal entries — all as batched write per firestore-operations.md
+- [x] T094 [US4] Implement invoice cancellation operation: create credit note with cancellation reason and QR code, mark original as cancelled (never delete), create reversal journal entry — batched write per firestore-operations.md
+- [x] T095 [US4] Implement payment recording operation: update invoice paymentAmount/paymentDate/status (paid vs partially_paid based on amount), create journal entry (DR: Cash/Bank, CR: AR) — batched write per firestore-operations.md
+- [x] T096 [US4] Add status transition validation: prevent update on paid/cancelled invoices, prevent cancel on already cancelled, validate payment preconditions (status must be issued/partially_paid/overdue)
+- [x] T097 [US4] Add invoice status history tracking: append StatusChange entry with timestamp, userId, note on every status transition
+- [x] T098 [US4] Create invoice update form/dialog on invoice detail page for editing amounts (triggers credit note + new invoice flow)
+- [x] T099 [US4] Create payment recording form/dialog on invoice detail page with amount field, auto-calculate remaining balance
+- [x] T100 [US4] Create cancellation dialog on invoice detail page with required reason text field
+- [x] T101 [US4] Add invoice lifecycle audit log entries for all update, cancel, and payment actions
 
 **Checkpoint**: Full invoice lifecycle (create → update/cancel → pay) working with ZATCA compliance
 
