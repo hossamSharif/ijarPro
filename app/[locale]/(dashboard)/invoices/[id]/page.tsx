@@ -3,8 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import { onSnapshot } from 'firebase/firestore';
-import { ArrowRight, FileText, Printer } from 'lucide-react';
+import { onSnapshot, getDoc } from 'firebase/firestore';
+import { ArrowRight, FileText } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -20,11 +20,12 @@ import {
 } from '@/components/ui/table';
 
 import { ZatcaQr } from '@/components/invoices/zatca-qr';
-import { invoiceDoc } from '@/lib/firebase/firestore';
+import { InvoicePdf } from '@/components/invoices/invoice-pdf';
+import { invoiceDoc, companyRef } from '@/lib/firebase/firestore';
 import { useAuth } from '@/lib/hooks/use-auth';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatDualDate, formatShortDate } from '@/lib/utils/dates';
-import type { Invoice, InvoiceStatus } from '@/lib/types/models';
+import type { Invoice, InvoiceStatus, Company } from '@/lib/types/models';
 
 const statusVariants: Record<InvoiceStatus, 'default' | 'secondary' | 'destructive' | 'outline'> = {
   draft: 'secondary',
@@ -46,6 +47,7 @@ export default function InvoiceDetailPage() {
   const { isAdmin, userProfile } = useAuth();
 
   const [invoice, setInvoice] = useState<InvoiceWithId | null>(null);
+  const [company, setCompany] = useState<Company | null>(null);
   const [loading, setLoading] = useState(true);
 
   const invoiceId = params.id as string;
@@ -60,6 +62,12 @@ export default function InvoiceDetailPage() {
     });
     return () => unsub();
   }, [invoiceId]);
+
+  useEffect(() => {
+    getDoc(companyRef).then((snap) => {
+      if (snap.exists()) setCompany(snap.data());
+    });
+  }, []);
 
   if (loading) {
     return (
@@ -271,10 +279,7 @@ export default function InvoiceDetailPage() {
 
       {/* Action Buttons */}
       <div className="flex flex-wrap gap-3">
-        <Button variant="outline" onClick={() => {/* PDF generation - T090 */}}>
-          <Printer className="me-2 h-4 w-4" />
-          {t('printPdf')}
-        </Button>
+        <InvoicePdf invoice={invoice} company={company} locale={locale} />
         {showPayBtn && (
           <Button variant="default">
             {t('recordPayment')}
