@@ -1,0 +1,10 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Placeholder — full rules will be implemented in Phase 2 (T029)
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
