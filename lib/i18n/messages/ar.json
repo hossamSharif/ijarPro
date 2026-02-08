@@ -273,7 +273,14 @@
     "website": "الموقع الإلكتروني",
     "vatRate": "نسبة الضريبة",
     "sessionTimeout": "مهلة الجلسة (دقائق)",
-    "expenseCategories": "فئات المصروفات"
+    "expenseCategories": "فئات المصروفات",
+    "addCategory": "إضافة فئة",
+    "removeCategory": "إزالة",
+    "categoryPlaceholder": "اسم الفئة",
+    "saved": "تم حفظ الملف التعريفي بنجاح",
+    "logoHint": "PNG أو JPG، الحد الأقصى 2 ميجابايت",
+    "removeLogo": "إزالة الشعار",
+    "changeLogo": "تغيير الشعار"
   },
   "users": {
     "title": "إدارة المستخدمين",

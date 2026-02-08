@@ -48,25 +48,54 @@ export function InvoicePdf({ invoice, company, locale }: InvoicePdfProps) {
       const margin = 15;
       let y = margin;
 
-      // Company header
+      // Company header with logo
       if (company) {
+        const textStartX = pageWidth - margin;
+        let logoEndX = margin;
+
+        // Add company logo if available
+        if (company.logoUrl) {
+          try {
+            const logoResponse = await fetch(company.logoUrl);
+            const logoBlob = await logoResponse.blob();
+            const logoDataUrl = await new Promise<string>((resolve) => {
+              const reader = new FileReader();
+              reader.onload = () => resolve(reader.result as string);
+              reader.readAsDataURL(logoBlob);
+            });
+            const logoSize = 20;
+            doc.addImage(logoDataUrl, margin, y, logoSize, logoSize);
+            logoEndX = margin + logoSize + 5;
+          } catch {
+            // Logo loading failed, continue without it
+          }
+        }
+
         doc.setFontSize(16);
-        doc.text(company.nameAr, pageWidth - margin, y, { align: 'right' });
+        doc.text(company.nameAr, textStartX, y, { align: 'right' });
         y += 7;
         doc.setFontSize(10);
-        doc.text(company.nameEn, pageWidth - margin, y, { align: 'right' });
+        doc.text(company.nameEn, textStartX, y, { align: 'right' });
         y += 5;
+        if (company.crNumber) {
+          doc.text(`CR: ${company.crNumber}`, textStartX, y, { align: 'right' });
+          y += 5;
+        }
         if (company.vatNumber) {
-          doc.text(`VAT: ${company.vatNumber}`, pageWidth - margin, y, { align: 'right' });
+          doc.text(`VAT: ${company.vatNumber}`, textStartX, y, { align: 'right' });
           y += 5;
         }
         if (company.address) {
           const addr = `${company.address.streetAr}, ${company.address.districtAr}, ${company.address.cityAr}`;
-          doc.text(addr, pageWidth - margin, y, { align: 'right' });
+          doc.text(addr, textStartX, y, { align: 'right' });
           y += 5;
         }
         if (company.phone) {
-          doc.text(company.phone, pageWidth - margin, y, { align: 'right' });
+          doc.text(company.phone, textStartX, y, { align: 'right' });
+          y += 5;
+        }
+        if (company.email) {
+          doc.text(company.email, textStartX, y, { align: 'right' });
           y += 5;
         }
       }

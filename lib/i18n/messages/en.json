@@ -273,7 +273,14 @@
     "website": "Website",
     "vatRate": "VAT Rate",
     "sessionTimeout": "Session Timeout (minutes)",
-    "expenseCategories": "Expense Categories"
+    "expenseCategories": "Expense Categories",
+    "addCategory": "Add Category",
+    "removeCategory": "Remove",
+    "categoryPlaceholder": "Category name",
+    "saved": "Company profile saved successfully",
+    "logoHint": "PNG or JPG, max 2MB",
+    "removeLogo": "Remove Logo",
+    "changeLogo": "Change Logo"
   },
   "users": {
     "title": "User Management",
