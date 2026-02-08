@@ -205,6 +205,7 @@
   "expenses": {
     "title": "المصروفات",
     "addExpense": "إضافة مصروف",
+    "expenseCreated": "تم إضافة المصروف بنجاح",
     "date": "التاريخ",
     "category": "الفئة",
     "amount": "المبلغ",
@@ -213,7 +214,20 @@
     "building": "المبنى",
     "apartment": "الشقة",
     "receipt": "الإيصال",
-    "uploadReceipt": "رفع إيصال"
+    "uploadReceipt": "رفع إيصال",
+    "removeReceipt": "إزالة الإيصال",
+    "receiptHint": "صورة أو PDF، الحد الأقصى 5 ميجابايت",
+    "selectCategory": "اختر الفئة",
+    "selectBuilding": "اختر المبنى",
+    "selectApartment": "اختر الشقة",
+    "allCategories": "جميع الفئات",
+    "allBuildings": "جميع المباني",
+    "dateFrom": "من تاريخ",
+    "dateTo": "إلى تاريخ",
+    "noExpenses": "لا توجد مصروفات",
+    "totalAmount": "إجمالي المبلغ",
+    "totalVat": "إجمالي الضريبة",
+    "viewReceipt": "عرض الإيصال"
   },
   "journal": {
     "title": "القيود المحاسبية",

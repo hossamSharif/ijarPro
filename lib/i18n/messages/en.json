@@ -205,6 +205,7 @@
   "expenses": {
     "title": "Expenses",
     "addExpense": "Add Expense",
+    "expenseCreated": "Expense added successfully",
     "date": "Date",
     "category": "Category",
     "amount": "Amount",
@@ -213,7 +214,20 @@
     "building": "Building",
     "apartment": "Apartment",
     "receipt": "Receipt",
-    "uploadReceipt": "Upload Receipt"
+    "uploadReceipt": "Upload Receipt",
+    "removeReceipt": "Remove Receipt",
+    "receiptHint": "Image or PDF, max 5MB",
+    "selectCategory": "Select category",
+    "selectBuilding": "Select building",
+    "selectApartment": "Select apartment",
+    "allCategories": "All Categories",
+    "allBuildings": "All Buildings",
+    "dateFrom": "From Date",
+    "dateTo": "To Date",
+    "noExpenses": "No expenses found",
+    "totalAmount": "Total Amount",
+    "totalVat": "Total VAT",
+    "viewReceipt": "View Receipt"
   },
   "journal": {
     "title": "Journal Entries",

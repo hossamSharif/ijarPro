@@ -268,12 +268,12 @@
 
 ### Implementation for User Story 7
 
-- [ ] T116 [US7] Create expense list page at app/[locale]/(dashboard)/expenses/page.tsx with data table, filters by date range, category, building
-- [ ] T117 [US7] Create expense form page at app/[locale]/(dashboard)/expenses/new/page.tsx with date, category (from company.expenseCategories), amount, VAT, description, building/apartment selectors, receipt upload
-- [ ] T118 [US7] Implement expense creation Firestore operation: addDoc expense, upload receipt to Storage, addDoc journal entry (DR: Expense Account by category, CR: Cash/Bank), addDoc audit log — batched write per firestore-operations.md
-- [ ] T119 [US7] Implement expense list queries with filters: by category, by building, by date range per firestore-operations.md
-- [ ] T120 [US7] Implement expense category management in company profile settings (add, rename, deactivate categories)
-- [ ] T121 [US7] Add expense audit log entries
+- [x] T116 [US7] Create expense list page at app/[locale]/(dashboard)/expenses/page.tsx with data table, filters by date range, category, building
+- [x] T117 [US7] Create expense form page at app/[locale]/(dashboard)/expenses/new/page.tsx with date, category (from company.expenseCategories), amount, VAT, description, building/apartment selectors, receipt upload
+- [x] T118 [US7] Implement expense creation Firestore operation: addDoc expense, upload receipt to Storage, addDoc journal entry (DR: Expense Account by category, CR: Cash/Bank), addDoc audit log — batched write per firestore-operations.md
+- [x] T119 [US7] Implement expense list queries with filters: by category, by building, by date range per firestore-operations.md
+- [x] T120 [US7] Implement expense category management in company profile settings (add, rename, deactivate categories)
+- [x] T121 [US7] Add expense audit log entries
 
 **Checkpoint**: Expenses can be recorded with receipts, journal entries auto-generated, filterable reports
 
