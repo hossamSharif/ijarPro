@@ -401,11 +401,11 @@ export default function JournalPage() {
                 value={newAccountCode}
                 onChange={(e) => setNewAccountCode(e.target.value)}
                 dir="ltr"
-                placeholder="e.g. 5110"
+                placeholder={t('accountCodePlaceholder')}
               />
             </div>
             <div className="space-y-2">
-              <Label>{t('accountName')} (عربي)</Label>
+              <Label>{t('accountNameAr')}</Label>
               <Input
                 value={newAccountNameAr}
                 onChange={(e) => setNewAccountNameAr(e.target.value)}
@@ -413,7 +413,7 @@ export default function JournalPage() {
               />
             </div>
             <div className="space-y-2">
-              <Label>{t('accountName')} (English)</Label>
+              <Label>{t('accountNameEn')}</Label>
               <Input
                 value={newAccountNameEn}
                 onChange={(e) => setNewAccountNameEn(e.target.value)}

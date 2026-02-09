@@ -246,7 +246,7 @@ export default function CompanyProfilePage() {
                       {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={logoPreview}
-                        alt="Company logo"
+                        alt={t('logoAlt')}
                         className="h-full w-full object-contain"
                       />
                       <button

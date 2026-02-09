@@ -200,7 +200,8 @@
       "success": "تم تحديث الفاتورة بنجاح"
     },
     "creditNoteCreated": "تم إنشاء إشعار دائن",
-    "newInvoiceCreated": "تم إنشاء فاتورة جديدة"
+    "newInvoiceCreated": "تم إنشاء فاتورة جديدة",
+    "originalInvoice": "الفاتورة الأصلية"
   },
   "expenses": {
     "title": "المصروفات",
@@ -287,7 +288,10 @@
     "seedAccountsConfirm": "هل تريد تهيئة دليل الحسابات الافتراضي؟",
     "accountsSeeded": "تمت تهيئة دليل الحسابات بنجاح",
     "accountAdded": "تم إضافة الحساب بنجاح",
-    "level": "المستوى"
+    "level": "المستوى",
+    "accountNameAr": "اسم الحساب (عربي)",
+    "accountNameEn": "اسم الحساب (إنجليزي)",
+    "accountCodePlaceholder": "مثال: 5110"
   },
   "reports": {
     "title": "التقارير",
@@ -331,7 +335,8 @@
     "saved": "تم حفظ الملف التعريفي بنجاح",
     "logoHint": "PNG أو JPG، الحد الأقصى 2 ميجابايت",
     "removeLogo": "إزالة الشعار",
-    "changeLogo": "تغيير الشعار"
+    "changeLogo": "تغيير الشعار",
+    "logoAlt": "شعار الشركة"
   },
   "users": {
     "title": "إدارة المستخدمين",

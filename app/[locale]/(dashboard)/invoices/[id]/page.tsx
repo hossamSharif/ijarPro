@@ -169,7 +169,7 @@ export default function InvoiceDetailPage() {
             </div>
             {invoice.originalInvoiceNumber && (
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Original Invoice</span>
+                <span className="text-muted-foreground">{t('originalInvoice')}</span>
                 <span className="font-mono">{invoice.originalInvoiceNumber}</span>
               </div>
             )}

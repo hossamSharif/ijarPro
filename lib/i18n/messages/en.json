@@ -200,7 +200,8 @@
       "success": "Invoice updated successfully"
     },
     "creditNoteCreated": "Credit note created",
-    "newInvoiceCreated": "New invoice created"
+    "newInvoiceCreated": "New invoice created",
+    "originalInvoice": "Original Invoice"
   },
   "expenses": {
     "title": "Expenses",
@@ -287,7 +288,10 @@
     "seedAccountsConfirm": "Do you want to initialize the default chart of accounts?",
     "accountsSeeded": "Chart of accounts initialized successfully",
     "accountAdded": "Account added successfully",
-    "level": "Level"
+    "level": "Level",
+    "accountNameAr": "Account Name (Arabic)",
+    "accountNameEn": "Account Name (English)",
+    "accountCodePlaceholder": "e.g. 5110"
   },
   "reports": {
     "title": "Reports",
@@ -331,7 +335,8 @@
     "saved": "Company profile saved successfully",
     "logoHint": "PNG or JPG, max 2MB",
     "removeLogo": "Remove Logo",
-    "changeLogo": "Change Logo"
+    "changeLogo": "Change Logo",
+    "logoAlt": "Company logo"
   },
   "users": {
     "title": "User Management",

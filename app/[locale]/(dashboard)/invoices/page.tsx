@@ -119,7 +119,7 @@ export default function InvoicesPage() {
     },
     {
       key: 'status',
-      header: t('status.draft'),
+      header: tCommon('status'),
       cell: (row) => (
         <div className="flex gap-1">
           <Badge variant={statusVariants[row.status]}>
