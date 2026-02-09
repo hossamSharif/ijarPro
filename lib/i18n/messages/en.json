@@ -407,7 +407,12 @@
     "syncing": "Syncing...",
     "offline": "Offline",
     "pending": "Pending Changes",
-    "error": "Sync Error"
+    "error": "Sync Error",
+    "pendingCount": "{count} pending change(s)",
+    "offlineBanner": "You are working offline. Changes will sync when connectivity is restored.",
+    "nearLimit": "Approaching pending writes limit ({count}/{limit}). Please connect to the internet.",
+    "atLimit": "Pending writes limit reached. No new changes can be made until you connect to the internet.",
+    "offlineInvoice": "Invoice created with temporary number. A final number will be assigned upon sync."
   },
   "dashboard": {
     "title": "Dashboard",
