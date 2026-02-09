@@ -165,7 +165,7 @@ export default function BuildingDetailPage() {
         },
       },
     ],
-    [ta, tc]
+    [ta, tc, locale]
   );
 
   if (buildingLoading) {

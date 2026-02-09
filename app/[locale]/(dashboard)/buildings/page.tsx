@@ -83,7 +83,7 @@ export default function BuildingsPage() {
         ),
       },
     ],
-    [t]
+    [t, locale]
   );
 
   if (loading) {
