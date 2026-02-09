@@ -430,13 +430,35 @@
     "subtitle": "Integrated Property Management Platform",
     "description": "Comprehensive building and apartment management system with ZATCA-compliant invoicing",
     "loginButton": "Login",
+    "heroTagline": "Smart Property Management Solutions",
+    "heroDescription": "Manage your buildings and apartments with complete efficiency — from ZATCA-compliant invoicing to accounting and reports — all from one platform",
     "features": {
       "buildings": "Building & Apartment Management",
+      "buildingsDesc": "Track all buildings and apartments easily with occupancy and maintenance info",
       "invoices": "ZATCA-Compliant Electronic Invoicing",
+      "invoicesDesc": "Generate electronic invoices with ZATCA QR codes and automatic sequential numbering",
       "accounting": "Double-Entry Accounting",
+      "accountingDesc": "Complete accounting system with manual and automatic entries and Saudi chart of accounts",
       "offline": "Works Offline",
+      "offlineDesc": "Continue working without an internet connection with automatic sync",
       "bilingual": "Arabic & English Interface",
-      "reports": "Comprehensive Reports & Analytics"
+      "bilingualDesc": "Full interface in both languages with Hijri calendar and Arabic-Indic numerals support",
+      "reports": "Comprehensive Reports & Analytics",
+      "reportsDesc": "Occupancy, revenue, expense, aging, and VAT reports"
+    },
+    "whyIjarPro": "Why Ijar Pro?",
+    "whyDescription": "Designed specifically for property management companies in Saudi Arabia",
+    "stats": {
+      "buildings": "Up to 50 buildings",
+      "apartments": "Up to 2,000 apartments",
+      "zatca": "ZATCA Phase 1 Compliant",
+      "pwa": "Works as an App"
+    },
+    "cta": "Get Started",
+    "contact": "Contact us via WhatsApp",
+    "footer": {
+      "copyright": "All rights reserved",
+      "madeIn": "Made in Saudi Arabia"
     }
   },
   "errors": {
