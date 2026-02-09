@@ -38,7 +38,10 @@
     "loginTitle": "Sign in to Ijar Pro",
     "loginSubtitle": "Enter your credentials to continue",
     "invalidCredentials": "Invalid credentials",
-    "sessionExpired": "Session expired, please log in again"
+    "sessionExpired": "Session expired, please log in again",
+    "sessionWarningTitle": "Session Expiring",
+    "sessionWarningDescription": "You will be automatically logged out in {seconds} seconds due to inactivity.",
+    "stayLoggedIn": "Stay Logged In"
   },
   "nav": {
     "dashboard": "Dashboard",

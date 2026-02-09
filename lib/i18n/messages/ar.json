@@ -38,7 +38,10 @@
     "loginTitle": "تسجيل الدخول إلى إيجار برو",
     "loginSubtitle": "أدخل بيانات الدخول للمتابعة",
     "invalidCredentials": "بيانات الدخول غير صحيحة",
-    "sessionExpired": "انتهت الجلسة، يرجى تسجيل الدخول مرة أخرى"
+    "sessionExpired": "انتهت الجلسة، يرجى تسجيل الدخول مرة أخرى",
+    "sessionWarningTitle": "انتهاء الجلسة",
+    "sessionWarningDescription": "سيتم تسجيل خروجك تلقائياً خلال {seconds} ثانية بسبب عدم النشاط.",
+    "stayLoggedIn": "البقاء متصلاً"
   },
   "nav": {
     "dashboard": "لوحة التحكم",

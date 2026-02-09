@@ -3,9 +3,11 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/hooks/use-auth';
+import { useSessionTimeout } from '@/lib/hooks/use-session-timeout';
 import { Sidebar } from '@/components/layout/sidebar';
 import { Topbar } from '@/components/layout/topbar';
 import { OfflineBanner } from '@/components/layout/offline-banner';
+import { SessionTimeoutDialog } from '@/components/layout/session-timeout-dialog';
 import { SidebarProvider } from '@/components/ui/sidebar';
 
 export default function DashboardLayout({
@@ -15,6 +17,7 @@ export default function DashboardLayout({
 }) {
   const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
+  const { showWarning, secondsLeft, stayLoggedIn, logout } = useSessionTimeout();
 
   useEffect(() => {
     if (!loading && !isAuthenticated) {
@@ -44,6 +47,12 @@ export default function DashboardLayout({
           <main className="flex-1 p-4 md:p-6">{children}</main>
         </div>
       </div>
+      <SessionTimeoutDialog
+        open={showWarning}
+        secondsLeft={secondsLeft}
+        onStay={stayLoggedIn}
+        onLogout={logout}
+      />
     </SidebarProvider>
   );
 }
