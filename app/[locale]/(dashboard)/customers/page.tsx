@@ -10,7 +10,7 @@ import { PermissionGuard } from '@/lib/permissions/guard';
 import { useCollection, type WithId } from '@/lib/hooks/use-firestore';
 import { getAllCustomersQuery } from '@/lib/firebase/customers';
 import type { Customer } from '@/lib/types/models';
-import { Users, Plus } from 'lucide-react';
+import { Users, Plus, AlertTriangle } from 'lucide-react';
 import { Timestamp } from 'firebase/firestore';
 import { TableSkeleton } from '@/components/shared/page-skeleton';
 
@@ -88,12 +88,23 @@ export default function CustomersPage() {
     [t, tc]
   );
 
+  const expiredCount = useMemo(
+    () => customers.filter((c) => c.isActive && isExpired(c.idExpiry)).length,
+    [customers]
+  );
+
   if (loading) {
     return <TableSkeleton rows={5} cols={6} />;
   }
 
   return (
     <div className="space-y-6">
+      {expiredCount > 0 && (
+        <div className="flex items-center gap-3 rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-sm text-destructive">
+          <AlertTriangle className="h-5 w-5 shrink-0" />
+          <span>{t('expiredIdsWarning', { count: expiredCount })}</span>
+        </div>
+      )}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Users className="h-8 w-8" />

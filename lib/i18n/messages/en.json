@@ -133,7 +133,8 @@
     "noLinkedApartment": "No linked apartment",
     "searchNationalId": "Search by National ID",
     "vacant": "Vacant",
-    "occupied": "Linked"
+    "occupied": "Linked",
+    "expiredIdsWarning": "{count} customer(s) have expired ID documents. Please follow up on ID renewals."
   },
   "invoices": {
     "title": "Invoices",

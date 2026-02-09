@@ -133,7 +133,8 @@
     "noLinkedApartment": "لا توجد شقة مرتبطة",
     "searchNationalId": "بحث برقم الهوية",
     "vacant": "شاغرة",
-    "occupied": "مرتبط"
+    "occupied": "مرتبط",
+    "expiredIdsWarning": "يوجد {count} عميل(عملاء) بهوية منتهية الصلاحية. يرجى متابعة تجديد الهويات."
   },
   "invoices": {
     "title": "الفواتير",
