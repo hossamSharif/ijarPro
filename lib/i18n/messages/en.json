@@ -303,7 +303,68 @@
     "dateRange": "Date Range",
     "fromDate": "From Date",
     "toDate": "To Date",
-    "generate": "Generate Report"
+    "generate": "Generate Report",
+    "exportPdf": "Export PDF",
+    "noData": "No data found for the selected period",
+    "selectReport": "Select report type",
+    "building": "Building",
+    "allBuildings": "All Buildings",
+    "occupancyReport": {
+      "building": "Building",
+      "total": "Total",
+      "occupied": "Occupied",
+      "vacant": "Vacant",
+      "maintenance": "Maintenance",
+      "rate": "Occupancy Rate"
+    },
+    "revenueReport": {
+      "building": "Building",
+      "invoiceCount": "Invoice Count",
+      "subtotal": "Subtotal",
+      "vat": "VAT",
+      "total": "Total",
+      "paid": "Collected",
+      "outstanding": "Outstanding",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "period": "Period"
+    },
+    "expenseReport": {
+      "category": "Category",
+      "amount": "Amount",
+      "vatAmount": "VAT",
+      "count": "Count",
+      "building": "Building",
+      "total": "Total",
+      "byCategory": "By Category",
+      "byBuilding": "By Building"
+    },
+    "agingReport": {
+      "customer": "Customer",
+      "invoiceNumber": "Invoice Number",
+      "invoiceDate": "Invoice Date",
+      "total": "Total",
+      "paid": "Paid",
+      "outstanding": "Outstanding",
+      "daysOverdue": "Days Overdue",
+      "current": "Current",
+      "days1to30": "1-30 Days",
+      "days31to60": "31-60 Days",
+      "days61to90": "61-90 Days",
+      "days90plus": "90+ Days",
+      "bucket": "Aging Bucket",
+      "totalOutstanding": "Total Outstanding"
+    },
+    "vatReport": {
+      "period": "Period",
+      "vatCollected": "VAT Collected (Sales)",
+      "vatPaid": "VAT Paid (Purchases)",
+      "netVat": "Net VAT Payable",
+      "invoiceCount": "Invoice Count",
+      "expenseCount": "Expense Count",
+      "salesTotal": "Total Sales",
+      "purchasesTotal": "Total Purchases"
+    }
   },
   "settings": {
     "title": "Settings",
@@ -423,7 +484,36 @@
     "yearlyRevenue": "Yearly Revenue",
     "totalExpenses": "Total Expenses",
     "outstandingReceivables": "Outstanding Receivables",
-    "recentActivity": "Recent Activity"
+    "recentActivity": "Recent Activity",
+    "noActivity": "No recent activity",
+    "viewAll": "View All",
+    "action": "Action",
+    "user": "User",
+    "entity": "Entity",
+    "time": "Time",
+    "actions": {
+      "create": "Created",
+      "update": "Updated",
+      "cancel": "Cancelled",
+      "status_change": "Status Change",
+      "permission_change": "Permission Change",
+      "account_activate": "Account Activated",
+      "account_deactivate": "Account Deactivated",
+      "payment": "Payment",
+      "sync_conflict": "Sync Conflict"
+    },
+    "entities": {
+      "buildings": "Building",
+      "apartments": "Apartment",
+      "customers": "Customer",
+      "invoices": "Invoice",
+      "expenses": "Expense",
+      "journalEntries": "Journal Entry",
+      "users": "User",
+      "company": "Company",
+      "accounts": "Account"
+    },
+    "monthlyExpenses": "Monthly Expenses"
   },
   "landing": {
     "title": "Ijar Pro",

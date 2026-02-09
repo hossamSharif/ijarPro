@@ -303,7 +303,68 @@
     "dateRange": "الفترة",
     "fromDate": "من تاريخ",
     "toDate": "إلى تاريخ",
-    "generate": "إنشاء التقرير"
+    "generate": "إنشاء التقرير",
+    "exportPdf": "تصدير PDF",
+    "noData": "لا توجد بيانات للفترة المحددة",
+    "selectReport": "اختر نوع التقرير",
+    "building": "المبنى",
+    "allBuildings": "جميع المباني",
+    "occupancyReport": {
+      "building": "المبنى",
+      "total": "الإجمالي",
+      "occupied": "مشغولة",
+      "vacant": "شاغرة",
+      "maintenance": "صيانة",
+      "rate": "نسبة الإشغال"
+    },
+    "revenueReport": {
+      "building": "المبنى",
+      "invoiceCount": "عدد الفواتير",
+      "subtotal": "المجموع الفرعي",
+      "vat": "الضريبة",
+      "total": "الإجمالي",
+      "paid": "المحصّل",
+      "outstanding": "المتبقي",
+      "monthly": "شهري",
+      "yearly": "سنوي",
+      "period": "الفترة"
+    },
+    "expenseReport": {
+      "category": "الفئة",
+      "amount": "المبلغ",
+      "vatAmount": "الضريبة",
+      "count": "العدد",
+      "building": "المبنى",
+      "total": "الإجمالي",
+      "byCategory": "حسب الفئة",
+      "byBuilding": "حسب المبنى"
+    },
+    "agingReport": {
+      "customer": "العميل",
+      "invoiceNumber": "رقم الفاتورة",
+      "invoiceDate": "تاريخ الفاتورة",
+      "total": "الإجمالي",
+      "paid": "المدفوع",
+      "outstanding": "المتبقي",
+      "daysOverdue": "أيام التأخير",
+      "current": "حالي",
+      "days1to30": "1-30 يوم",
+      "days31to60": "31-60 يوم",
+      "days61to90": "61-90 يوم",
+      "days90plus": "أكثر من 90 يوم",
+      "bucket": "الفئة العمرية",
+      "totalOutstanding": "إجمالي المستحقات"
+    },
+    "vatReport": {
+      "period": "الفترة",
+      "vatCollected": "ضريبة محصّلة (مبيعات)",
+      "vatPaid": "ضريبة مدفوعة (مشتريات)",
+      "netVat": "صافي الضريبة المستحقة",
+      "invoiceCount": "عدد الفواتير",
+      "expenseCount": "عدد المصروفات",
+      "salesTotal": "إجمالي المبيعات",
+      "purchasesTotal": "إجمالي المشتريات"
+    }
   },
   "settings": {
     "title": "الإعدادات",
@@ -423,7 +484,36 @@
     "yearlyRevenue": "إيراد السنة",
     "totalExpenses": "إجمالي المصروفات",
     "outstandingReceivables": "المستحقات المعلقة",
-    "recentActivity": "النشاط الأخير"
+    "recentActivity": "النشاط الأخير",
+    "noActivity": "لا يوجد نشاط حديث",
+    "viewAll": "عرض الكل",
+    "action": "الإجراء",
+    "user": "المستخدم",
+    "entity": "الكيان",
+    "time": "الوقت",
+    "actions": {
+      "create": "إنشاء",
+      "update": "تحديث",
+      "cancel": "إلغاء",
+      "status_change": "تغيير حالة",
+      "permission_change": "تغيير صلاحيات",
+      "account_activate": "تفعيل حساب",
+      "account_deactivate": "إلغاء تفعيل حساب",
+      "payment": "دفعة",
+      "sync_conflict": "تعارض مزامنة"
+    },
+    "entities": {
+      "buildings": "مبنى",
+      "apartments": "شقة",
+      "customers": "عميل",
+      "invoices": "فاتورة",
+      "expenses": "مصروف",
+      "journalEntries": "قيد محاسبي",
+      "users": "مستخدم",
+      "company": "شركة",
+      "accounts": "حساب"
+    },
+    "monthlyExpenses": "مصروفات الشهر"
   },
   "landing": {
     "title": "إيجار برو",
