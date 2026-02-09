@@ -367,9 +367,9 @@
 
 ### Implementation for User Story 11
 
-- [ ] T150 [US11] Create public landing page at app/[locale]/page.tsx using **frontend-design skill** for distinctive Arabic-first design — hero section, feature highlights, bilingual toggle, Login button (→ /login), no signup
-- [ ] T151 [P] [US11] Create floating WhatsApp FAB component in components/layout/whatsapp-fab.tsx linking to https://wa.me/966543620486
-- [ ] T152 [US11] Ensure landing page is public (no auth required) and responsive mobile-first with Arabic RTL default
+- [x] T150 [US11] Create public landing page at app/[locale]/page.tsx using **frontend-design skill** for distinctive Arabic-first design — hero section, feature highlights, bilingual toggle, Login button (→ /login), no signup
+- [x] T151 [P] [US11] Create floating WhatsApp FAB component in components/layout/whatsapp-fab.tsx linking to https://wa.me/966543620486
+- [x] T152 [US11] Ensure landing page is public (no auth required) and responsive mobile-first with Arabic RTL default
 
 **Checkpoint**: Professional landing page live with WhatsApp contact and login access
 
