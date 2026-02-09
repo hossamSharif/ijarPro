@@ -39,5 +39,7 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
     categories: ['business', 'finance', 'productivity'],
+    scope: '/',
+    prefer_related_applications: false,
   };
 }
