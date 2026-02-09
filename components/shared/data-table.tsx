@@ -10,7 +10,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback, type KeyboardEvent } from 'react';
 
 export interface DataTableColumn<T> {
   key: string;
@@ -66,13 +66,32 @@ export function DataTable<T extends Record<string, any>>({
     });
   }, [filteredData, sortColumn, sortDirection]);
 
-  const toggleSort = (key: string) => {
+  const toggleSort = useCallback((key: string) => {
     if (sortColumn === key) {
       setSortDirection((prev) => (prev === 'asc' ? 'desc' : 'asc'));
     } else {
       setSortColumn(key);
       setSortDirection('asc');
     }
+  }, [sortColumn]);
+
+  const handleHeaderKeyDown = useCallback((e: KeyboardEvent, key: string) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      toggleSort(key);
+    }
+  }, [toggleSort]);
+
+  const handleRowKeyDown = useCallback((e: KeyboardEvent, row: T) => {
+    if (onRowClick && (e.key === 'Enter' || e.key === ' ')) {
+      e.preventDefault();
+      onRowClick(row);
+    }
+  }, [onRowClick]);
+
+  const getAriaSortValue = (colKey: string): 'ascending' | 'descending' | 'none' => {
+    if (sortColumn !== colKey) return 'none';
+    return sortDirection === 'asc' ? 'ascending' : 'descending';
   };
 
   return (
@@ -83,6 +102,7 @@ export function DataTable<T extends Record<string, any>>({
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="max-w-sm"
+          aria-label={searchPlaceholder || t('search')}
         />
       )}
       <div className="rounded-md border">
@@ -94,9 +114,17 @@ export function DataTable<T extends Record<string, any>>({
                   key={col.key}
                   className={col.sortable ? 'cursor-pointer select-none' : ''}
                   onClick={col.sortable ? () => toggleSort(col.key) : undefined}
+                  onKeyDown={col.sortable ? (e) => handleHeaderKeyDown(e, col.key) : undefined}
+                  tabIndex={col.sortable ? 0 : undefined}
+                  role={col.sortable ? 'button' : undefined}
+                  aria-sort={col.sortable ? getAriaSortValue(col.key) : undefined}
                 >
                   {col.header}
-                  {sortColumn === col.key && (sortDirection === 'asc' ? ' ↑' : ' ↓')}
+                  {sortColumn === col.key && (
+                    <span aria-hidden="true">
+                      {sortDirection === 'asc' ? ' \u25B2' : ' \u25BC'}
+                    </span>
+                  )}
                 </TableHead>
               ))}
             </TableRow>
@@ -104,7 +132,7 @@ export function DataTable<T extends Record<string, any>>({
           <TableBody>
             {sortedData.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
+                <TableCell colSpan={columns.length} className="h-24 text-center" role="status">
                   {t('noResults')}
                 </TableCell>
               </TableRow>
@@ -112,8 +140,11 @@ export function DataTable<T extends Record<string, any>>({
               sortedData.map((row, index) => (
                 <TableRow
                   key={index}
-                  className={onRowClick ? 'cursor-pointer' : ''}
+                  className={onRowClick ? 'cursor-pointer hover:bg-muted/50' : ''}
                   onClick={onRowClick ? () => onRowClick(row) : undefined}
+                  onKeyDown={onRowClick ? (e) => handleRowKeyDown(e, row) : undefined}
+                  tabIndex={onRowClick ? 0 : undefined}
+                  role={onRowClick ? 'link' : undefined}
                 >
                   {columns.map((col) => (
                     <TableCell key={col.key}>{col.cell(row)}</TableCell>
