@@ -383,16 +383,16 @@
 
 ### Implementation for User Story 12
 
-- [ ] T153 [US12] Create dashboard home page at app/[locale]/(dashboard)/page.tsx with metric cards: total buildings, total apartments, occupancy rate, current month/year revenue, total expenses, outstanding receivables
-- [ ] T154 [US12] Implement dashboard metric aggregation queries from Firestore (building counts from buildings collection, invoice/expense sums with date filters)
-- [ ] T155 [US12] Create recent activity log section on dashboard showing latest auditLog entries
-- [ ] T156 [US12] Create reports page at app/[locale]/(dashboard)/reports/page.tsx with report type selector
-- [ ] T157 [P] [US12] Implement occupancy report: building-by-building apartment status breakdown
-- [ ] T158 [P] [US12] Implement revenue report: revenue by building and period with recharts visualization
-- [ ] T159 [P] [US12] Implement expense report: expenses by category, building, and period
-- [ ] T160 [P] [US12] Implement tenant aging report: overdue invoices grouped by aging buckets (Current, 1-30, 31-60, 61-90, 90+ days)
-- [ ] T161 [US12] Implement VAT report for ZATCA filing: total VAT collected (invoices) vs total VAT paid (expenses) for specified period
-- [ ] T162 [US12] Add report export functionality (PDF download for each report type)
+- [x] T153 [US12] Create dashboard home page at app/[locale]/(dashboard)/page.tsx with metric cards: total buildings, total apartments, occupancy rate, current month/year revenue, total expenses, outstanding receivables
+- [x] T154 [US12] Implement dashboard metric aggregation queries from Firestore (building counts from buildings collection, invoice/expense sums with date filters)
+- [x] T155 [US12] Create recent activity log section on dashboard showing latest auditLog entries
+- [x] T156 [US12] Create reports page at app/[locale]/(dashboard)/reports/page.tsx with report type selector
+- [x] T157 [P] [US12] Implement occupancy report: building-by-building apartment status breakdown
+- [x] T158 [P] [US12] Implement revenue report: revenue by building and period with recharts visualization
+- [x] T159 [P] [US12] Implement expense report: expenses by category, building, and period
+- [x] T160 [P] [US12] Implement tenant aging report: overdue invoices grouped by aging buckets (Current, 1-30, 31-60, 61-90, 90+ days)
+- [x] T161 [US12] Implement VAT report for ZATCA filing: total VAT collected (invoices) vs total VAT paid (expenses) for specified period
+- [x] T162 [US12] Add report export functionality (PDF download for each report type)
 
 **Checkpoint**: Dashboard displays accurate metrics, all reports generate correctly
 
