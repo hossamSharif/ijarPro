@@ -330,12 +330,12 @@
 
 ### Implementation for User Story 9
 
-- [ ] T139 [US9] Verify and test offline Firestore persistence setup from T025 — confirm all CRUD operations work offline (buildings, apartments, customers, invoices, expenses, journal entries)
-- [ ] T140 [US9] Integrate sync indicator component (T063) into dashboard layout topbar — show real-time sync status (Synced/Syncing/Offline/Pending/Error)
-- [ ] T141 [US9] Implement offline invoice creation with temporary OFFLINE-{deviceId}-{seq} numbering from lib/sync/invoice-sequence.ts, verify QR code generation works offline
-- [ ] T142 [US9] Implement sync conflict resolution: LWW with server timestamp via lib/sync/conflict-resolver.ts, log conflicts to auditLog with syncConflict=true
-- [ ] T143 [US9] Display pending sync count and offline indicator across all pages
-- [ ] T144 [US9] Handle 500 pending writes limit: warn user when approaching limit, prevent new writes at limit
+- [x] T139 [US9] Verify and test offline Firestore persistence setup from T025 — confirm all CRUD operations work offline (buildings, apartments, customers, invoices, expenses, journal entries)
+- [x] T140 [US9] Integrate sync indicator component (T063) into dashboard layout topbar — show real-time sync status (Synced/Syncing/Offline/Pending/Error)
+- [x] T141 [US9] Implement offline invoice creation with temporary OFFLINE-{deviceId}-{seq} numbering from lib/sync/invoice-sequence.ts, verify QR code generation works offline
+- [x] T142 [US9] Implement sync conflict resolution: LWW with server timestamp via lib/sync/conflict-resolver.ts, log conflicts to auditLog with syncConflict=true
+- [x] T143 [US9] Display pending sync count and offline indicator across all pages
+- [x] T144 [US9] Handle 500 pending writes limit: warn user when approaching limit, prevent new writes at limit
 
 **Checkpoint**: App works fully offline with auto-sync and conflict handling
 
