@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { invoicesCollection, expensesCollection } from '@/lib/firebase/firestore';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatNumber } from '@/lib/utils/numbers';
+import { ReportPdfButton } from './report-pdf';
 import type { Invoice, Expense } from '@/lib/types/models';
 
 type InvoiceWithId = Invoice & { id: string };
@@ -153,8 +154,23 @@ export function VatReport() {
 
       {/* Detail Table */}
       <Card>
-        <CardHeader>
+        <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>{tReports('vat')}</CardTitle>
+          <ReportPdfButton
+            fileName="vat-report"
+            title={tReports('vat')}
+            headers={[locale === 'ar' ? 'البند' : 'Item', locale === 'ar' ? 'القيمة' : 'Value']}
+            rows={[
+              [t('invoiceCount'), String(vatData.invoiceCount)],
+              [t('salesTotal'), vatData.salesTotal.toFixed(2)],
+              [t('vatCollected'), vatData.vatCollected.toFixed(2)],
+              [t('expenseCount'), String(vatData.expenseCount)],
+              [t('purchasesTotal'), vatData.purchasesTotal.toFixed(2)],
+              [t('vatPaid'), vatData.vatPaid.toFixed(2)],
+              [t('netVat'), vatData.netVat.toFixed(2)],
+            ]}
+            locale={locale}
+          />
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto">

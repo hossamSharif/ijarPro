@@ -25,6 +25,7 @@ import {
 import { invoicesCollection, buildingsCollection } from '@/lib/firebase/firestore';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatNumber } from '@/lib/utils/numbers';
+import { ReportPdfButton } from './report-pdf';
 import type { Invoice, Building } from '@/lib/types/models';
 
 type InvoiceWithId = Invoice & { id: string };
@@ -206,7 +207,44 @@ export function RevenueReport() {
 
       {/* Table */}
       <Card>
-        <CardContent className="pt-6">
+        <CardHeader className="flex flex-row items-center justify-between">
+          <CardTitle>{tReports('revenue')}</CardTitle>
+          {byBuilding.length > 0 && (
+            <ReportPdfButton
+              fileName="revenue-report"
+              title={tReports('revenue')}
+              headers={[
+                t('building'),
+                t('invoiceCount'),
+                t('subtotal'),
+                t('vat'),
+                t('total'),
+                t('paid'),
+                t('outstanding'),
+              ]}
+              rows={byBuilding.map((row) => [
+                locale === 'ar' ? row.nameAr : row.nameEn,
+                String(row.count),
+                row.subtotal.toFixed(2),
+                row.vat.toFixed(2),
+                row.total.toFixed(2),
+                row.paid.toFixed(2),
+                (row.total - row.paid).toFixed(2),
+              ])}
+              footerRow={[
+                t('total'),
+                String(totals.count),
+                totals.subtotal.toFixed(2),
+                totals.vat.toFixed(2),
+                totals.total.toFixed(2),
+                totals.paid.toFixed(2),
+                (totals.total - totals.paid).toFixed(2),
+              ]}
+              locale={locale}
+            />
+          )}
+        </CardHeader>
+        <CardContent>
           {byBuilding.length === 0 ? (
             <p className="py-8 text-center text-sm text-muted-foreground">
               {tReports('noData')}

@@ -6,6 +6,7 @@ import { onSnapshot, query, where } from 'firebase/firestore';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { buildingsCollection } from '@/lib/firebase/firestore';
 import { formatNumber, formatPercentage } from '@/lib/utils/numbers';
+import { ReportPdfButton } from './report-pdf';
 import type { Building } from '@/lib/types/models';
 
 type BuildingWithId = Building & { id: string };
@@ -56,10 +57,39 @@ export function OccupancyReport() {
     );
   }
 
+  const pdfHeaders = [t('building'), t('total'), t('occupied'), t('vacant'), t('maintenance'), t('rate')];
+  const pdfRows = buildings.map((b) => {
+    const rate = b.apartmentCount > 0 ? (b.occupiedCount / b.apartmentCount) * 100 : 0;
+    return [
+      locale === 'ar' ? b.nameAr : b.nameEn,
+      String(b.apartmentCount),
+      String(b.occupiedCount),
+      String(b.vacantCount),
+      String(b.maintenanceCount),
+      `${rate.toFixed(1)}%`,
+    ];
+  });
+  const pdfFooter = [
+    t('total'),
+    String(totals.apartments),
+    String(totals.occupied),
+    String(totals.vacant),
+    String(totals.maintenance),
+    `${overallRate.toFixed(1)}%`,
+  ];
+
   return (
     <Card>
-      <CardHeader>
+      <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>{tReports('occupancy')}</CardTitle>
+        <ReportPdfButton
+          fileName="occupancy-report"
+          title={tReports('occupancy')}
+          headers={pdfHeaders}
+          rows={pdfRows}
+          footerRow={pdfFooter}
+          locale={locale}
+        />
       </CardHeader>
       <CardContent>
         <div className="overflow-x-auto">

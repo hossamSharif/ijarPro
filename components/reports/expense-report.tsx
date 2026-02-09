@@ -23,6 +23,7 @@ import {
 import { expensesCollection, buildingsCollection, companyRef } from '@/lib/firebase/firestore';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatNumber } from '@/lib/utils/numbers';
+import { ReportPdfButton } from './report-pdf';
 import type { Expense, Building } from '@/lib/types/models';
 
 type ExpenseWithId = Expense & { id: string };
@@ -216,8 +217,30 @@ export function ExpenseReport() {
 
       {/* By Category Table */}
       <Card>
-        <CardHeader>
+        <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>{t('byCategory')}</CardTitle>
+          {byCategory.length > 0 && (
+            <ReportPdfButton
+              fileName="expense-report"
+              title={tReports('expenses')}
+              headers={[t('category'), t('count'), t('amount'), t('vatAmount'), t('total')]}
+              rows={byCategory.map((row) => [
+                row.category,
+                String(row.count),
+                row.amount.toFixed(2),
+                row.vat.toFixed(2),
+                (row.amount + row.vat).toFixed(2),
+              ])}
+              footerRow={[
+                t('total'),
+                String(totals.count),
+                totals.amount.toFixed(2),
+                totals.vat.toFixed(2),
+                (totals.amount + totals.vat).toFixed(2),
+              ]}
+              locale={locale}
+            />
+          )}
         </CardHeader>
         <CardContent>
           {byCategory.length === 0 ? (

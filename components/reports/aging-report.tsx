@@ -17,6 +17,7 @@ import { invoicesCollection } from '@/lib/firebase/firestore';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatNumber } from '@/lib/utils/numbers';
 import { formatShortDate } from '@/lib/utils/dates';
+import { ReportPdfButton } from './report-pdf';
 import type { Invoice } from '@/lib/types/models';
 
 type InvoiceWithId = Invoice & { id: string };
@@ -144,10 +145,34 @@ export function AgingReport() {
 
       {/* Bucket Summary */}
       <Card>
-        <CardHeader>
+        <CardHeader className="flex flex-row items-center justify-between">
           <CardTitle>
             {t('totalOutstanding')}: {formatCurrency(totalOutstanding, locale)}
           </CardTitle>
+          {outstandingInvoices.length > 0 && (
+            <ReportPdfButton
+              fileName="aging-report"
+              title={tReports('aging')}
+              headers={[t('customer'), t('invoiceNumber'), t('invoiceDate'), t('total'), t('paid'), t('outstanding'), t('daysOverdue')]}
+              rows={outstandingInvoices.map((inv) => {
+                const outstanding = inv.total - (inv.paymentAmount || 0);
+                const days = getDaysOverdue(inv.invoiceDate.toDate());
+                return [
+                  locale === 'ar' ? inv.customerNameAr : inv.customerNameEn,
+                  inv.invoiceNumber,
+                  inv.invoiceDate.toDate().toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US'),
+                  inv.total.toFixed(2),
+                  (inv.paymentAmount || 0).toFixed(2),
+                  outstanding.toFixed(2),
+                  String(days),
+                ];
+              })}
+              locale={locale}
+              summaryCards={[
+                { label: t('totalOutstanding'), value: totalOutstanding.toFixed(2) },
+              ]}
+            />
+          )}
         </CardHeader>
         <CardContent>
           {buckets.every((b) => b.count === 0) ? (
