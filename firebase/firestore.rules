@@ -2,9 +2,129 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Placeholder — full rules will be implemented in Phase 2 (T029)
-    match /{document=**} {
-      allow read, write: if request.auth != null;
+
+    // === Helper Functions ===
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return request.auth.token.role == "admin";
+    }
+
+    function isOwner(uid) {
+      return request.auth.uid == uid;
+    }
+
+    function userPermissions() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.permissions;
+    }
+
+    function hasPermission(perm) {
+      return isAdmin() || (userPermissions()[perm] == true);
+    }
+
+    function isActiveUser() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isActive == true;
+    }
+
+    function balanceValid() {
+      return request.resource.data.totalDebits == request.resource.data.totalCredits;
+    }
+
+    // === Collection Rules ===
+
+    // Company Profile
+    match /company/profile {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow write: if isAuthenticated() && isAdmin();
+    }
+
+    // Users
+    match /users/{uid} {
+      allow read: if isAuthenticated() && (isAdmin() || isOwner(uid));
+      allow create: if isAuthenticated() && isAdmin();
+      allow update: if isAuthenticated() && (isAdmin() || (isOwner(uid) && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['updatedAt'])));
+      allow delete: if false;
+    }
+
+    // Buildings
+    match /buildings/{buildingId} {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow create: if isAuthenticated() && hasPermission('canManageBuildings');
+      allow update: if isAuthenticated() && hasPermission('canManageBuildings');
+      allow delete: if false;
+    }
+
+    // Apartments
+    match /apartments/{apartmentId} {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow create: if isAuthenticated() && hasPermission('canManageBuildings');
+      allow update: if isAuthenticated() && (hasPermission('canManageBuildings') || hasPermission('canManageCustomers'));
+      allow delete: if false;
+    }
+
+    // Customers
+    match /customers/{customerId} {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow create: if isAuthenticated() && hasPermission('canManageCustomers');
+      allow update: if isAuthenticated() && hasPermission('canManageCustomers');
+      allow delete: if false;
+    }
+
+    // Invoices
+    match /invoices/{invoiceId} {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow create: if isAuthenticated() && hasPermission('canCreateInvoice');
+      allow update: if isAuthenticated() && (
+        hasPermission('canUpdateInvoice') ||
+        hasPermission('canCancelInvoice') ||
+        hasPermission('canRecordPayment')
+      );
+      allow delete: if false;
+    }
+
+    // Expenses
+    match /expenses/{expenseId} {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow create: if isAuthenticated() && hasPermission('canAddExpense');
+      allow update: if isAuthenticated() && isAdmin();
+      allow delete: if false;
+    }
+
+    // Journal Entries (IMMUTABLE)
+    match /journalEntries/{entryId} {
+      allow read: if isAuthenticated() && hasPermission('canViewJournal');
+      allow create: if isAuthenticated() && isActiveUser() && balanceValid();
+      allow update: if false;
+      allow delete: if false;
+    }
+
+    // Accounts (Chart of Accounts)
+    match /accounts/{accountId} {
+      allow read: if isAuthenticated() && hasPermission('canViewJournal');
+      allow create: if isAuthenticated() && isAdmin();
+      allow update: if isAuthenticated() && isAdmin() && !resource.data.isSystem;
+      allow delete: if false;
+    }
+
+    // Counters (restricted to known counter IDs with matching permissions)
+    match /counters/{counterId} {
+      allow read: if isAuthenticated() && isActiveUser();
+      allow write: if isAuthenticated() && isActiveUser() && (
+        (counterId == 'invoices' && hasPermission('canCreateInvoice')) ||
+        (counterId == 'creditNotes' && (hasPermission('canUpdateInvoice') || hasPermission('canCancelInvoice'))) ||
+        isAdmin()
+      );
+    }
+
+    // Audit Log (APPEND-ONLY)
+    match /auditLog/{logId} {
+      allow read: if isAuthenticated() && (isAdmin() || hasPermission('canViewReports'));
+      allow create: if isAuthenticated() && isActiveUser();
+      allow update: if false;
+      allow delete: if false;
     }
   }
 }
