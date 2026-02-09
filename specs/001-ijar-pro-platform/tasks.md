@@ -287,16 +287,16 @@
 
 ### Implementation for User Story 8
 
-- [ ] T122 [US8] Create journal entries list page at app/[locale]/(dashboard)/journal/page.tsx with data table, filters by date range, account, entry type (invoice/expense/manual), building
-- [ ] T123 [US8] Create manual journal entry form at app/[locale]/(dashboard)/journal/new/page.tsx with date, description, multiple debit/credit lines, real-time balance validation (totalDebits === totalCredits)
-- [ ] T124 [P] [US8] Create journal entry form component in components/accounting/journal-entry-form.tsx with dynamic line add/remove, account selector, balance indicator
-- [ ] T125 [P] [US8] Create chart of accounts tree view component in components/accounting/chart-of-accounts.tsx
-- [ ] T126 [P] [US8] Create debit/credit balance indicator component in components/accounting/balance-indicator.tsx
-- [ ] T127 [US8] Implement manual journal entry creation with balance enforcement per firestore-operations.md
-- [ ] T128 [US8] Implement chart of accounts seeding: on first load, seed predefined accounts from chart-of-accounts.ts into Firestore accounts collection if empty
-- [ ] T129 [US8] Implement admin ability to add custom sub-accounts to chart of accounts
-- [ ] T130 [US8] Implement journal entry list queries with filters per firestore-operations.md
-- [ ] T131 [US8] Add manual journal entry audit log entries
+- [x] T122 [US8] Create journal entries list page at app/[locale]/(dashboard)/journal/page.tsx with data table, filters by date range, account, entry type (invoice/expense/manual), building
+- [x] T123 [US8] Create manual journal entry form at app/[locale]/(dashboard)/journal/new/page.tsx with date, description, multiple debit/credit lines, real-time balance validation (totalDebits === totalCredits)
+- [x] T124 [P] [US8] Create journal entry form component in components/accounting/journal-entry-form.tsx with dynamic line add/remove, account selector, balance indicator
+- [x] T125 [P] [US8] Create chart of accounts tree view component in components/accounting/chart-of-accounts.tsx
+- [x] T126 [P] [US8] Create debit/credit balance indicator component in components/accounting/balance-indicator.tsx
+- [x] T127 [US8] Implement manual journal entry creation with balance enforcement per firestore-operations.md
+- [x] T128 [US8] Implement chart of accounts seeding: on first load, seed predefined accounts from chart-of-accounts.ts into Firestore accounts collection if empty
+- [x] T129 [US8] Implement admin ability to add custom sub-accounts to chart of accounts
+- [x] T130 [US8] Implement journal entry list queries with filters per firestore-operations.md
+- [x] T131 [US8] Add manual journal entry audit log entries
 
 **Checkpoint**: Full journal view with auto/manual entries, chart of accounts, filtering
 
