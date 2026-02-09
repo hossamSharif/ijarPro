@@ -57,6 +57,7 @@ import {
 import { getActiveBuildingsQuery } from '@/lib/firebase/buildings';
 import { getApartmentsByBuildingQuery } from '@/lib/firebase/apartments';
 import { formatDualDate } from '@/lib/utils/dates';
+import { formatCurrency } from '@/lib/utils/currency';
 import type { Customer, Building, Apartment, Invoice, InvoiceStatus } from '@/lib/types/models';
 import { ArrowRight, Pencil, Users, Link2, Unlink, AlertTriangle } from 'lucide-react';
 
@@ -267,7 +268,7 @@ export default function CustomerDetailPage() {
       {
         key: 'total',
         header: ti('total'),
-        cell: (row) => `${row.total.toLocaleString()} ${tc('currency')}`,
+        cell: (row) => formatCurrency(row.total, locale),
         sortable: true,
       },
       {
@@ -555,7 +556,7 @@ export default function CustomerDetailPage() {
               )}
               <div>
                 <p className="text-sm text-muted-foreground">{tc('status')}</p>
-                <Badge variant="secondary">{linkedApartment.monthlyRent.toLocaleString()} {tc('currency')}</Badge>
+                <Badge variant="secondary">{formatCurrency(linkedApartment.monthlyRent, locale)}</Badge>
               </div>
             </div>
           ) : (
@@ -658,7 +659,7 @@ export default function CustomerDetailPage() {
                   <SelectContent>
                     {vacantApartments.map((a) => (
                       <SelectItem key={a.id} value={a.id}>
-                        {a.unitNumber} — {a.monthlyRent.toLocaleString()} {tc('currency')}
+                        {a.unitNumber} — {formatCurrency(a.monthlyRent, locale)}
                       </SelectItem>
                     ))}
                   </SelectContent>

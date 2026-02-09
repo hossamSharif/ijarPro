@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, useParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -35,6 +35,8 @@ import { buildingDoc } from '@/lib/firebase/firestore';
 import { updateBuilding, deactivateBuilding, reactivateBuilding } from '@/lib/firebase/buildings';
 import { getApartmentsByBuildingQuery } from '@/lib/firebase/apartments';
 import { buildingSchema, type BuildingFormData } from '@/lib/validators/building';
+import { formatCurrency } from '@/lib/utils/currency';
+import { formatNumber } from '@/lib/utils/numbers';
 import type { Building, Apartment } from '@/lib/types/models';
 import { ArrowRight, Plus, Pencil, Building as BuildingIcon } from 'lucide-react';
 
@@ -43,6 +45,7 @@ export default function BuildingDetailPage() {
   const ta = useTranslations('apartments');
   const tc = useTranslations('common');
   const tt = useTranslations('toasts');
+  const locale = useLocale();
   const router = useRouter();
   const params = useParams();
   const buildingId = params.id as string;
@@ -150,7 +153,7 @@ export default function BuildingDetailPage() {
       {
         key: 'monthlyRent',
         header: ta('monthlyRent'),
-        cell: (row) => row.monthlyRent.toLocaleString(),
+        cell: (row) => formatCurrency(row.monthlyRent, locale),
       },
       {
         key: 'status',
@@ -342,25 +345,25 @@ export default function BuildingDetailPage() {
       <div className="grid gap-4 sm:grid-cols-4">
         <Card>
           <CardContent className="pt-6">
-            <div className="text-2xl font-bold">{building.apartmentCount}</div>
+            <div className="text-2xl font-bold">{formatNumber(building.apartmentCount, locale)}</div>
             <p className="text-sm text-muted-foreground">{t('apartmentCount')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <div className="text-2xl font-bold text-orange-600">{building.occupiedCount}</div>
+            <div className="text-2xl font-bold text-orange-600">{formatNumber(building.occupiedCount, locale)}</div>
             <p className="text-sm text-muted-foreground">{t('occupiedCount')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <div className="text-2xl font-bold text-green-600">{building.vacantCount}</div>
+            <div className="text-2xl font-bold text-green-600">{formatNumber(building.vacantCount, locale)}</div>
             <p className="text-sm text-muted-foreground">{t('vacantCount')}</p>
           </CardContent>
         </Card>
         <Card>
           <CardContent className="pt-6">
-            <div className="text-2xl font-bold text-yellow-600">{building.maintenanceCount}</div>
+            <div className="text-2xl font-bold text-yellow-600">{formatNumber(building.maintenanceCount, locale)}</div>
             <p className="text-sm text-muted-foreground">{t('maintenanceCount')}</p>
           </CardContent>
         </Card>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useMemo } from 'react';
 import { query, orderBy } from 'firebase/firestore';
@@ -11,11 +11,13 @@ import { PermissionGuard } from '@/lib/permissions/guard';
 import { useCollection, type WithId } from '@/lib/hooks/use-firestore';
 import { buildingsCollection } from '@/lib/firebase/firestore';
 import type { Building } from '@/lib/types/models';
+import { formatNumber } from '@/lib/utils/numbers';
 import { Building as BuildingIcon, Plus } from 'lucide-react';
 
 export default function BuildingsPage() {
   const t = useTranslations('buildings');
   const tc = useTranslations('common');
+  const locale = useLocale();
   const router = useRouter();
 
   const buildingsQuery = useMemo(
@@ -46,28 +48,28 @@ export default function BuildingsPage() {
       {
         key: 'apartmentCount',
         header: t('apartmentCount'),
-        cell: (row) => row.apartmentCount,
+        cell: (row) => formatNumber(row.apartmentCount, locale),
         sortable: true,
       },
       {
         key: 'occupiedCount',
         header: t('occupiedCount'),
         cell: (row) => (
-          <span className="text-orange-600 dark:text-orange-400">{row.occupiedCount}</span>
+          <span className="text-orange-600 dark:text-orange-400">{formatNumber(row.occupiedCount, locale)}</span>
         ),
       },
       {
         key: 'vacantCount',
         header: t('vacantCount'),
         cell: (row) => (
-          <span className="text-green-600 dark:text-green-400">{row.vacantCount}</span>
+          <span className="text-green-600 dark:text-green-400">{formatNumber(row.vacantCount, locale)}</span>
         ),
       },
       {
         key: 'maintenanceCount',
         header: t('maintenanceCount'),
         cell: (row) => (
-          <span className="text-yellow-600 dark:text-yellow-400">{row.maintenanceCount}</span>
+          <span className="text-yellow-600 dark:text-yellow-400">{formatNumber(row.maintenanceCount, locale)}</span>
         ),
       },
       {

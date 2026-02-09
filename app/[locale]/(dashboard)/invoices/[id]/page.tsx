@@ -27,6 +27,7 @@ import { UpdateDialog } from '@/components/invoices/update-dialog';
 import { invoiceDoc, companyRef } from '@/lib/firebase/firestore';
 import { useAuth } from '@/lib/hooks/use-auth';
 import { formatCurrency } from '@/lib/utils/currency';
+import { formatNumber, formatPercentage } from '@/lib/utils/numbers';
 import { formatDualDate, formatShortDate } from '@/lib/utils/dates';
 import type { Invoice, InvoiceStatus, Company } from '@/lib/types/models';
 
@@ -212,7 +213,7 @@ export default function InvoiceDetailPage() {
                     <TableCell>
                       {locale === 'ar' ? item.descriptionAr : item.descriptionEn}
                     </TableCell>
-                    <TableCell className="text-center">{item.quantity}</TableCell>
+                    <TableCell className="text-center">{formatNumber(item.quantity, locale)}</TableCell>
                     <TableCell className="text-end">
                       {formatCurrency(item.unitPrice, locale)}
                     </TableCell>
@@ -232,7 +233,7 @@ export default function InvoiceDetailPage() {
               <span>{formatCurrency(invoice.subtotal, locale)}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-muted-foreground">{t('vatRate')} ({invoice.vatRate}%)</span>
+              <span className="text-muted-foreground">{t('vatRate')} ({formatPercentage(invoice.vatRate, locale)})</span>
               <span>{formatCurrency(invoice.vatAmount, locale)}</span>
             </div>
             <Separator />

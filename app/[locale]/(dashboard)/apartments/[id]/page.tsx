@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, useParams } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -25,6 +25,7 @@ import { useDocument } from '@/lib/hooks/use-firestore';
 import { useAuth } from '@/lib/hooks/use-auth';
 import { apartmentDoc, buildingDoc } from '@/lib/firebase/firestore';
 import { updateApartment, changeApartmentStatus } from '@/lib/firebase/apartments';
+import { formatCurrency } from '@/lib/utils/currency';
 import type { Apartment, Building, ApartmentStatus } from '@/lib/types/models';
 import { ArrowRight, Pencil, Home } from 'lucide-react';
 
@@ -54,6 +55,7 @@ export default function ApartmentDetailPage() {
   const t = useTranslations('apartments');
   const tc = useTranslations('common');
   const tt = useTranslations('toasts');
+  const locale = useLocale();
   const router = useRouter();
   const params = useParams();
   const apartmentId = params.id as string;
@@ -328,7 +330,7 @@ export default function ApartmentDetailPage() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">{t('monthlyRent')}</p>
-                <p className="font-medium">{apartment.monthlyRent.toLocaleString()} {tc('currency')}</p>
+                <p className="font-medium">{formatCurrency(apartment.monthlyRent, locale)}</p>
               </div>
               {apartment.description && (
                 <div className="sm:col-span-2">
