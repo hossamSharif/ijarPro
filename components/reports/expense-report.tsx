@@ -200,7 +200,7 @@ export function ExpenseReport() {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, percent }) => `${name} (${(percent * 100).toFixed(0)}%)`}
+                  label={({ name, percent }) => `${name} (${((percent ?? 0) * 100).toFixed(0)}%)`}
                   outerRadius={100}
                   dataKey="value"
                 >
@@ -208,7 +208,7 @@ export function ExpenseReport() {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: number) => formatCurrency(value, locale)} />
+                <Tooltip formatter={(value) => formatCurrency(Number(value), locale)} />
               </PieChart>
             </ResponsiveContainer>
           </CardContent>

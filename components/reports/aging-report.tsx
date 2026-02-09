@@ -134,7 +134,7 @@ export function AgingReport() {
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip
-                  formatter={(value: number) => formatCurrency(value, locale)}
+                  formatter={(value) => formatCurrency(Number(value), locale)}
                 />
                 <Bar dataKey="amount" fill="#dc2626" />
               </BarChart>

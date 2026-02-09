@@ -194,7 +194,7 @@ export function RevenueReport() {
                 <XAxis dataKey="name" />
                 <YAxis />
                 <Tooltip
-                  formatter={(value: number) => formatCurrency(value, locale)}
+                  formatter={(value) => formatCurrency(Number(value), locale)}
                 />
                 <Legend />
                 <Bar dataKey="total" name={t('total')} fill="#2563eb" />
