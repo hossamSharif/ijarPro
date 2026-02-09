@@ -35,21 +35,21 @@ function getTypeColor(type: AccountType): string {
 
 function AccountNode({
   account,
-  children,
+  childAccounts,
   onAddSubAccount,
   isAdmin,
   locale,
   t,
 }: {
   account: AccountWithId;
-  children: AccountWithId[];
+  childAccounts: AccountWithId[];
   onAddSubAccount?: (parentAccount: AccountWithId) => void;
   isAdmin?: boolean;
   locale: string;
   t: ReturnType<typeof useTranslations>;
 }) {
   const [expanded, setExpanded] = useState(account.level === 1);
-  const hasChildren = children.length > 0;
+  const hasChildren = childAccounts.length > 0;
   const isRtl = locale === 'ar';
   const ExpandIcon = !hasChildren ? null : expanded ? ChevronDown : isRtl ? ChevronLeft : ChevronRight;
 
@@ -109,11 +109,11 @@ function AccountNode({
 
       {expanded && hasChildren && (
         <div>
-          {children.map((child) => (
+          {childAccounts.map((child) => (
             <AccountNode
               key={child.code}
               account={child}
-              children={[]}
+              childAccounts={[]}
               onAddSubAccount={onAddSubAccount}
               isAdmin={isAdmin}
               locale={locale}
@@ -146,7 +146,7 @@ export function ChartOfAccountsTree({
         <AccountNode
           key={parent.code}
           account={parent}
-          children={getChildren(parent.code)}
+          childAccounts={getChildren(parent.code)}
           onAddSubAccount={onAddSubAccount}
           isAdmin={isAdmin}
           locale={locale}

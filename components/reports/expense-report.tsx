@@ -9,7 +9,6 @@ import {
   Cell,
   ResponsiveContainer,
   Tooltip,
-  Legend,
 } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -20,7 +19,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { expensesCollection, buildingsCollection, companyRef } from '@/lib/firebase/firestore';
+import { expensesCollection, buildingsCollection } from '@/lib/firebase/firestore';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatNumber } from '@/lib/utils/numbers';
 import { ReportPdfButton } from './report-pdf';

@@ -99,7 +99,7 @@ export function AgingReport() {
     }
 
     return result;
-  }, [outstandingInvoices]);
+  }, [outstandingInvoices, t]);
 
   const totalOutstanding = outstandingInvoices.reduce(
     (sum, inv) => sum + inv.total - (inv.paymentAmount || 0),
