@@ -16,6 +16,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/lib/hooks/use-auth';
+import { useOverdueDetection } from '@/lib/hooks/use-overdue-detection';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatNumber, formatPercentage } from '@/lib/utils/numbers';
 import { formatShortDate } from '@/lib/utils/dates';
@@ -51,7 +52,10 @@ function getYearRange() {
 export default function DashboardPage() {
   const t = useTranslations('dashboard');
   const locale = useLocale();
-  const { isAdmin, userProfile } = useAuth();
+  const { isAdmin, userProfile, firebaseUser } = useAuth();
+
+  // Auto-detect and mark overdue invoices on dashboard load
+  useOverdueDetection(firebaseUser?.uid, userProfile?.nameAr);
 
   const [buildings, setBuildings] = useState<BuildingWithId[]>([]);
   const [invoices, setInvoices] = useState<InvoiceWithId[]>([]);
