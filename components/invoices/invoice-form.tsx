@@ -50,6 +50,7 @@ export function InvoiceForm() {
   const t = useTranslations('invoices');
   const tCommon = useTranslations('common');
   const tErrors = useTranslations('errors');
+  const tSync = useTranslations('sync');
   const locale = useLocale();
   const router = useRouter();
   const { firebaseUser, userProfile } = useAuth();
@@ -230,9 +231,16 @@ export function InvoiceForm() {
         userName: userProfile.nameAr,
       });
 
+      if (result.isOffline) {
+        toast.info(tSync('offlineInvoice'));
+      }
       toast.success(`${t('createInvoice')} — ${result.invoiceNumber}`);
       router.push(`/invoices/${result.invoiceId}`);
     } catch (error) {
+      if (error instanceof Error && error.message === 'PENDING_WRITES_LIMIT') {
+        toast.error(tSync('atLimit'));
+        return;
+      }
       toast.error(error instanceof Error ? error.message : tErrors('generic'));
     } finally {
       setSubmitting(false);

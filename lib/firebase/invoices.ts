@@ -30,9 +30,11 @@ import { generateZatcaBase64 } from '@/lib/zatca/qr-generator';
 import { validateZatcaFields } from '@/lib/zatca/invoice-validator';
 import { formatISO8601WithTimezone } from '@/lib/utils/dates';
 import { addAuditEntry } from '@/lib/utils/audit';
-import { getNextInvoiceNumber, getNextCreditNoteNumber, generateOfflineInvoiceId } from '@/lib/sync/invoice-sequence';
+import { getNextInvoiceNumber, getNextCreditNoteNumber, generateOfflineInvoiceId, isOfflineInvoiceId } from '@/lib/sync/invoice-sequence';
 import { canUpdateInvoice, canCancelInvoice, canRecordPayment, getPaymentResultStatus } from '@/lib/invoices/status-validation';
 import { createStatusChange } from '@/lib/invoices/status-history';
+import { incrementPendingWrites, isAtPendingLimit } from '@/lib/hooks/use-sync-status';
+import { isOnline } from '@/lib/sync/sync-manager';
 
 // === Queries ===
 
@@ -80,7 +82,12 @@ export async function createInvoice({
   userId,
   userName,
 }: CreateInvoiceParams) {
-  // Get company info for ZATCA QR
+  // Check pending writes limit
+  if (isAtPendingLimit()) {
+    throw new Error('PENDING_WRITES_LIMIT');
+  }
+
+  // Get company info for ZATCA QR (served from cache when offline)
   const companySnap = await getDoc(companyRef);
   const company = companySnap.exists() ? companySnap.data() : null;
 
@@ -92,7 +99,9 @@ export async function createInvoice({
   // Get sequential invoice number (falls back to offline ID)
   let invoiceNumber: string;
   let tempId: string | undefined;
+  const online = isOnline();
   try {
+    if (!online) throw new Error('offline');
     invoiceNumber = await getNextInvoiceNumber();
   } catch {
     // Offline — use temporary ID
@@ -204,10 +213,16 @@ export async function createInvoice({
       vatAmount,
       total,
       zatcaQrValid: zatcaValidation.valid,
+      offline: !!tempId,
     },
   });
 
-  return { invoiceId, invoiceNumber };
+  // Track pending writes when offline
+  if (!online) {
+    incrementPendingWrites();
+  }
+
+  return { invoiceId, invoiceNumber, isOffline: !!tempId };
 }
 
 // === Update Invoice (Credit Note + New Debit Note) ===
