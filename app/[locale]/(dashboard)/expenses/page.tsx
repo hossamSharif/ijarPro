@@ -20,7 +20,6 @@ import { useAuth } from '@/lib/hooks/use-auth';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatShortDate } from '@/lib/utils/dates';
 import type { Expense, Building } from '@/lib/types/models';
-import type { Company } from '@/lib/types/models';
 import { expensesCollection, buildingConverter, companyRef } from '@/lib/firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import { TableSkeleton } from '@/components/shared/page-skeleton';
@@ -30,7 +29,6 @@ type BuildingWithId = Building & { id: string };
 
 export default function ExpensesPage() {
   const t = useTranslations('expenses');
-  const tCommon = useTranslations('common');
   const locale = useLocale();
   const router = useRouter();
   const { isAdmin, userProfile } = useAuth();

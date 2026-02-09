@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { useRouter, useParams } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
@@ -28,7 +28,6 @@ import { ArrowRight } from 'lucide-react';
 
 export default function NewApartmentPage() {
   const t = useTranslations('apartments');
-  const tb = useTranslations('buildings');
   const tc = useTranslations('common');
   const tt = useTranslations('toasts');
   const te = useTranslations('errors');

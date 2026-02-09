@@ -281,7 +281,7 @@ export default function CustomerDetailPage() {
         ),
       },
     ],
-    [ti, tc]
+    [ti, tc, locale]
   );
 
   if (loading) {

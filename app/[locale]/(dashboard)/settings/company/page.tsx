@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { useTranslations } from 'next-intl';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { toast } from 'sonner';
 import { onSnapshot } from 'firebase/firestore';
@@ -18,7 +18,6 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-  FormDescription,
 } from '@/components/ui/form';
 import { companySchema, type CompanyFormData } from '@/lib/validators/company';
 import { companyRef } from '@/lib/firebase/firestore';
@@ -72,12 +71,6 @@ export default function CompanyProfilePage() {
       sessionTimeout: 30,
       expenseCategories: DEFAULT_EXPENSE_CATEGORIES,
     },
-  });
-
-  const { fields, append, remove } = useFieldArray({
-    control: form.control,
-    // useFieldArray expects an array of objects, so we use a wrapper approach
-    name: 'expenseCategories' as never,
   });
 
   // Load existing company profile

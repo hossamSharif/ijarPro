@@ -4,7 +4,7 @@ import { useState } from 'react';
 import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { useAuth } from '@/lib/hooks/use-auth';
+
 
 const ReportSkeleton = () => (
   <div className="space-y-4 pt-4">
@@ -40,7 +40,6 @@ const VatReport = dynamic(
 
 export default function ReportsPage() {
   const t = useTranslations('reports');
-  const { isAdmin } = useAuth();
   const [activeTab, setActiveTab] = useState('occupancy');
 
   return (

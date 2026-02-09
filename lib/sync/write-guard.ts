@@ -1,7 +1,7 @@
 'use client';
 
 import { isAtPendingLimit, isNearPendingLimit, incrementPendingWrites } from '@/lib/hooks/use-sync-status';
-import { isOnline, PENDING_WRITES_LIMIT, PENDING_WRITES_WARNING_THRESHOLD } from '@/lib/sync/sync-manager';
+import { isOnline } from '@/lib/sync/sync-manager';
 
 /**
  * Check if a write operation can proceed based on pending writes limit.

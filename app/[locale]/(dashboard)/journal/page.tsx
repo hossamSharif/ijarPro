@@ -88,7 +88,6 @@ export default function JournalPage() {
   const [newAccountNameEn, setNewAccountNameEn] = useState('');
   const [addingAccount, setAddingAccount] = useState(false);
 
-  const canViewJournal = isAdmin || userProfile?.permissions?.canViewJournal;
   const canCreateEntry = isAdmin || userProfile?.permissions?.canCreateManualEntry;
 
   // Load buildings for filter

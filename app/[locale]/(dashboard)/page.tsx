@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
-import { onSnapshot, query, where, orderBy, limit, collection, Timestamp } from 'firebase/firestore';
+import { onSnapshot, query, where, orderBy, limit, Timestamp } from 'firebase/firestore';
 import {
   Building2,
   DoorOpen,
@@ -20,14 +20,12 @@ import { useOverdueDetection } from '@/lib/hooks/use-overdue-detection';
 import { formatCurrency } from '@/lib/utils/currency';
 import { formatNumber, formatPercentage } from '@/lib/utils/numbers';
 import { formatShortDate } from '@/lib/utils/dates';
-import { db } from '@/lib/firebase/config';
 import { DashboardSkeleton } from '@/components/shared/page-skeleton';
 import {
   buildingsCollection,
   invoicesCollection,
   expensesCollection,
   auditLogCollection,
-  buildingConverter,
 } from '@/lib/firebase/firestore';
 import type { Building, Invoice, Expense, AuditLogEntry } from '@/lib/types/models';
 
@@ -53,7 +51,7 @@ function getYearRange() {
 export default function DashboardPage() {
   const t = useTranslations('dashboard');
   const locale = useLocale();
-  const { isAdmin, userProfile, firebaseUser } = useAuth();
+  const { userProfile, firebaseUser } = useAuth();
 
   // Auto-detect and mark overdue invoices on dashboard load
   useOverdueDetection(firebaseUser?.uid, userProfile?.nameAr);
@@ -119,7 +117,6 @@ export default function DashboardPage() {
     const occupancyRate = totalApartments > 0 ? (totalOccupied / totalApartments) * 100 : 0;
 
     const monthRange = getMonthRange();
-    const yearRange = getYearRange();
 
     // Revenue calculations — only debit invoices, not cancelled
     const activeInvoices = invoices.filter(

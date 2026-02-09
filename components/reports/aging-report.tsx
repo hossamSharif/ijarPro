@@ -99,6 +99,7 @@ export function AgingReport() {
     }
 
     return result;
+  // eslint-disable-next-line react-hooks/exhaustive-deps -- bucketLabels is stable per render with same t
   }, [outstandingInvoices, t]);
 
   const totalOutstanding = outstandingInvoices.reduce(

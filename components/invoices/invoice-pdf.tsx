@@ -51,7 +51,6 @@ export function InvoicePdf({ invoice, company, locale }: InvoicePdfProps) {
       // Company header with logo
       if (company) {
         const textStartX = pageWidth - margin;
-        let logoEndX = margin;
 
         // Add company logo if available
         if (company.logoUrl) {
@@ -65,7 +64,6 @@ export function InvoicePdf({ invoice, company, locale }: InvoicePdfProps) {
             });
             const logoSize = 20;
             doc.addImage(logoDataUrl, margin, y, logoSize, logoSize);
-            logoEndX = margin + logoSize + 5;
           } catch {
             // Logo loading failed, continue without it
           }
@@ -240,7 +238,7 @@ export function InvoicePdf({ invoice, company, locale }: InvoicePdfProps) {
     } finally {
       setGenerating(false);
     }
-  }, [invoice, company, locale, t]);
+  }, [invoice, company, locale]);
 
   return (
     <Button variant="outline" onClick={generatePdf} disabled={generating}>

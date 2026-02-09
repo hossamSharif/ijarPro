@@ -30,7 +30,7 @@ import { useAuth } from '@/lib/hooks/use-auth';
 import { formatCurrency } from '@/lib/utils/currency';
 import type { Customer, Apartment, Building } from '@/lib/types/models';
 
-import { getDocs as getDocsFirestore, query, where, orderBy, collection } from 'firebase/firestore';
+import { query, where, orderBy, collection } from 'firebase/firestore';
 import { db } from '@/lib/firebase/config';
 import { buildingConverter, apartmentConverter } from '@/lib/firebase/firestore';
 

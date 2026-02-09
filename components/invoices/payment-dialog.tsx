@@ -61,7 +61,7 @@ export function PaymentDialog({ invoice, userId, userName, locale }: PaymentDial
 
     setSubmitting(true);
     try {
-      const result = await recordPayment({
+      await recordPayment({
         invoiceId: invoice.id,
         amount: data.amount,
         userId,

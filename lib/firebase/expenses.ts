@@ -2,13 +2,10 @@
 
 import {
   addDoc,
-  getDocs,
   query,
   where,
   orderBy,
   Timestamp,
-  onSnapshot,
-  type Unsubscribe,
 } from 'firebase/firestore';
 import {
   expensesCollection,

@@ -18,7 +18,7 @@ import type { JournalEntryFormData } from '@/lib/validators/journal-entry';
 import type { JournalEntry, Account } from '@/lib/types/accounting';
 import { CHART_OF_ACCOUNTS } from '@/lib/accounting/chart-of-accounts';
 import { addAuditEntry } from '@/lib/utils/audit';
-import { checkWriteAllowed, trackOfflineWrite } from '@/lib/sync/write-guard';
+import { checkWriteAllowed } from '@/lib/sync/write-guard';
 
 // === Queries ===
 

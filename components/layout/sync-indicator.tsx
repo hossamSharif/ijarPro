@@ -3,7 +3,7 @@
 import { useTranslations } from 'next-intl';
 import { Cloud, CloudOff, Loader2, AlertTriangle, CheckCircle } from 'lucide-react';
 import { useSyncStatus } from '@/lib/hooks/use-sync-status';
-import { PENDING_WRITES_WARNING_THRESHOLD, PENDING_WRITES_LIMIT } from '@/lib/sync/sync-manager';
+import { PENDING_WRITES_WARNING_THRESHOLD } from '@/lib/sync/sync-manager';
 import type { SyncState } from '@/lib/sync/sync-manager';
 import { Badge } from '@/components/ui/badge';
 

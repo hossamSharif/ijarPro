@@ -25,7 +25,6 @@ export function SessionTimeoutDialog({
   onLogout,
 }: SessionTimeoutDialogProps) {
   const t = useTranslations('auth');
-  const tCommon = useTranslations('common');
 
   return (
     <Dialog open={open}>

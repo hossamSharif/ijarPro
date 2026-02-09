@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // Firebase Cloud Messaging background service worker
 // This runs separately from the main Serwist service worker
 //

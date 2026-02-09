@@ -4,22 +4,16 @@ import {
   addDoc,
   updateDoc,
   getDoc,
-  getDocs,
   query,
   where,
   orderBy,
   Timestamp,
-  writeBatch,
-  runTransaction,
   arrayUnion,
-  increment,
 } from 'firebase/firestore';
-import { db } from './config';
 import {
   invoicesCollection,
   invoiceDoc,
   journalEntriesCollection,
-  counterDoc,
   companyRef,
 } from './firestore';
 import type { InvoiceFormData } from '@/lib/validators/invoice';
@@ -30,7 +24,7 @@ import { generateZatcaBase64 } from '@/lib/zatca/qr-generator';
 import { validateZatcaFields } from '@/lib/zatca/invoice-validator';
 import { formatISO8601WithTimezone } from '@/lib/utils/dates';
 import { addAuditEntry } from '@/lib/utils/audit';
-import { getNextInvoiceNumber, getNextCreditNoteNumber, generateOfflineInvoiceId, isOfflineInvoiceId } from '@/lib/sync/invoice-sequence';
+import { getNextInvoiceNumber, getNextCreditNoteNumber, generateOfflineInvoiceId } from '@/lib/sync/invoice-sequence';
 import { canUpdateInvoice, canCancelInvoice, canRecordPayment, getPaymentResultStatus } from '@/lib/invoices/status-validation';
 import { createStatusChange } from '@/lib/invoices/status-history';
 import { isOnline } from '@/lib/sync/sync-manager';
@@ -167,9 +161,6 @@ export async function createInvoice({
     { subtotal, vatAmount, total, invoiceNumber, buildingId: building.id },
     '' // will be set after invoice created
   );
-
-  // Batched write: invoice + journal entry + audit
-  const batch = writeBatch(db);
 
   // Add invoice
   const invoiceRef = addDoc(invoicesCollection, {

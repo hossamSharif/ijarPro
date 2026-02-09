@@ -1,11 +1,11 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useLocale, useTranslations } from 'next-intl';
+import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
-import { getDoc, getDocs, query, where, orderBy, collection } from 'firebase/firestore';
+import { getDoc } from 'firebase/firestore';
 import { toast } from 'sonner';
 import { Plus, Trash2, FileText } from 'lucide-react';
 
@@ -28,8 +28,6 @@ import { updateInvoice } from '@/lib/firebase/invoices';
 import { companyRef } from '@/lib/firebase/firestore';
 import { formatCurrency } from '@/lib/utils/currency';
 import type { Invoice, Customer, Apartment, Building } from '@/lib/types/models';
-import { db } from '@/lib/firebase/config';
-import { customerConverter, buildingConverter, apartmentConverter } from '@/lib/firebase/firestore';
 
 interface UpdateDialogProps {
   invoice: Invoice & { id: string };
@@ -56,7 +54,6 @@ export function UpdateDialog({ invoice, userId, userName, locale }: UpdateDialog
     control,
     watch,
     setValue,
-    formState: { errors },
   } = useForm<InvoiceFormData>({
     resolver: zodResolver(invoiceSchema),
     defaultValues: {
