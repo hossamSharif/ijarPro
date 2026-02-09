@@ -349,11 +349,11 @@
 
 ### Implementation for User Story 10
 
-- [ ] T145 [P] [US10] Create PWA manifest in app/manifest.ts with Arabic metadata (name: "إيجار برو", dir: "rtl", lang: "ar", display: "standalone", icons, theme color)
-- [ ] T146 [US10] Create service worker source in app/sw.ts with Serwist: precache app shell + icons + default locale, runtime caching strategies (NetworkOnly for auth, NetworkFirst for API, CacheFirst for static assets, StaleWhileRevalidate for default)
-- [ ] T147 [P] [US10] Create PWA icons (192x192, 512x512) in public/icons/
-- [ ] T148 [US10] Create offline fallback page at app/[locale]/~offline/page.tsx
-- [ ] T149 [US10] Configure Firebase Cloud Messaging: create public/firebase-messaging-sw.js, implement notification permission request, store FCM tokens per user in Firestore
+- [x] T145 [P] [US10] Create PWA manifest in app/manifest.ts with Arabic metadata (name: "إيجار برو", dir: "rtl", lang: "ar", display: "standalone", icons, theme color)
+- [x] T146 [US10] Create service worker source in app/sw.ts with Serwist: precache app shell + icons + default locale, runtime caching strategies (NetworkOnly for auth, NetworkFirst for API, CacheFirst for static assets, StaleWhileRevalidate for default)
+- [x] T147 [P] [US10] Create PWA icons (192x192, 512x512) in public/icons/
+- [x] T148 [US10] Create offline fallback page at app/[locale]/~offline/page.tsx
+- [x] T149 [US10] Configure Firebase Cloud Messaging: create public/firebase-messaging-sw.js, implement notification permission request, store FCM tokens per user in Firestore
 
 **Checkpoint**: PWA installable with offline caching and optional push notifications
 
