@@ -392,6 +392,11 @@
     "passwordMismatch": "Passwords do not match",
     "wrongPassword": "Current password is incorrect"
   },
+  "language": {
+    "toggle": "Toggle Language",
+    "switchToEnglish": "English",
+    "switchToArabic": "عربي"
+  },
   "sync": {
     "synced": "Synced",
     "syncing": "Syncing...",

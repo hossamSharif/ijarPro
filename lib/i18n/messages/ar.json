@@ -392,6 +392,11 @@
     "passwordMismatch": "كلمات المرور غير متطابقة",
     "wrongPassword": "كلمة المرور الحالية غير صحيحة"
   },
+  "language": {
+    "toggle": "تبديل اللغة",
+    "switchToEnglish": "English",
+    "switchToArabic": "عربي"
+  },
   "sync": {
     "synced": "متزامن",
     "syncing": "جاري المزامنة...",
