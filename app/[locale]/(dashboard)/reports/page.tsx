@@ -1,14 +1,42 @@
 'use client';
 
 import { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { useTranslations } from 'next-intl';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/lib/hooks/use-auth';
-import { OccupancyReport } from '@/components/reports/occupancy-report';
-import { RevenueReport } from '@/components/reports/revenue-report';
-import { ExpenseReport } from '@/components/reports/expense-report';
-import { AgingReport } from '@/components/reports/aging-report';
-import { VatReport } from '@/components/reports/vat-report';
+
+const ReportSkeleton = () => (
+  <div className="space-y-4 pt-4">
+    <div className="h-6 w-32 animate-pulse rounded bg-muted" />
+    <div className="h-64 animate-pulse rounded-lg bg-muted" />
+  </div>
+);
+
+const OccupancyReport = dynamic(
+  () => import('@/components/reports/occupancy-report').then((m) => m.OccupancyReport),
+  { loading: () => <ReportSkeleton /> }
+);
+
+const RevenueReport = dynamic(
+  () => import('@/components/reports/revenue-report').then((m) => m.RevenueReport),
+  { ssr: false, loading: () => <ReportSkeleton /> }
+);
+
+const ExpenseReport = dynamic(
+  () => import('@/components/reports/expense-report').then((m) => m.ExpenseReport),
+  { ssr: false, loading: () => <ReportSkeleton /> }
+);
+
+const AgingReport = dynamic(
+  () => import('@/components/reports/aging-report').then((m) => m.AgingReport),
+  { ssr: false, loading: () => <ReportSkeleton /> }
+);
+
+const VatReport = dynamic(
+  () => import('@/components/reports/vat-report').then((m) => m.VatReport),
+  { loading: () => <ReportSkeleton /> }
+);
 
 export default function ReportsPage() {
   const t = useTranslations('reports');

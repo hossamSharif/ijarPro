@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { useLocale, useTranslations } from 'next-intl';
 import { onSnapshot, getDoc } from 'firebase/firestore';
 import { ArrowRight } from 'lucide-react';
@@ -19,7 +20,10 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-import { ZatcaQr } from '@/components/invoices/zatca-qr';
+const ZatcaQr = dynamic(
+  () => import('@/components/invoices/zatca-qr').then((m) => m.ZatcaQr),
+  { ssr: false, loading: () => <div className="h-[180px] w-[180px] animate-pulse rounded bg-muted" /> }
+);
 import { InvoicePdf } from '@/components/invoices/invoice-pdf';
 import { PaymentDialog } from '@/components/invoices/payment-dialog';
 import { CancelDialog } from '@/components/invoices/cancel-dialog';

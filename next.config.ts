@@ -10,6 +10,10 @@ const withSerwist = withSerwistInit({
   disable: process.env.NODE_ENV === "development",
 });
 
-const nextConfig: NextConfig = {};
+const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: ['recharts', 'lucide-react', 'dayjs'],
+  },
+};
 
 export default withSerwist(withNextIntl(nextConfig));
