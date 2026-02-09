@@ -33,8 +33,8 @@ import { addAuditEntry } from '@/lib/utils/audit';
 import { getNextInvoiceNumber, getNextCreditNoteNumber, generateOfflineInvoiceId, isOfflineInvoiceId } from '@/lib/sync/invoice-sequence';
 import { canUpdateInvoice, canCancelInvoice, canRecordPayment, getPaymentResultStatus } from '@/lib/invoices/status-validation';
 import { createStatusChange } from '@/lib/invoices/status-history';
-import { incrementPendingWrites, isAtPendingLimit } from '@/lib/hooks/use-sync-status';
 import { isOnline } from '@/lib/sync/sync-manager';
+import { checkWriteAllowed, trackOfflineWrite } from '@/lib/sync/write-guard';
 
 // === Queries ===
 
@@ -83,9 +83,7 @@ export async function createInvoice({
   userName,
 }: CreateInvoiceParams) {
   // Check pending writes limit
-  if (isAtPendingLimit()) {
-    throw new Error('PENDING_WRITES_LIMIT');
-  }
+  checkWriteAllowed();
 
   // Get company info for ZATCA QR (served from cache when offline)
   const companySnap = await getDoc(companyRef);
@@ -218,9 +216,7 @@ export async function createInvoice({
   });
 
   // Track pending writes when offline
-  if (!online) {
-    incrementPendingWrites();
-  }
+  trackOfflineWrite();
 
   return { invoiceId, invoiceNumber, isOffline: !!tempId };
 }
@@ -246,6 +242,8 @@ export async function updateInvoice({
   userId,
   userName,
 }: UpdateInvoiceParams) {
+  checkWriteAllowed();
+
   // Get the original invoice
   const originalSnap = await getDoc(invoiceDoc(originalInvoiceId));
   if (!originalSnap.exists()) {
@@ -461,6 +459,8 @@ export async function cancelInvoice({
   userId,
   userName,
 }: CancelInvoiceParams) {
+  checkWriteAllowed();
+
   // Get the invoice
   const invoiceSnap = await getDoc(invoiceDoc(invoiceId));
   if (!invoiceSnap.exists()) {
@@ -600,6 +600,8 @@ export async function recordPayment({
   userId,
   userName,
 }: RecordPaymentParams) {
+  checkWriteAllowed();
+
   // Get the invoice
   const invoiceSnap = await getDoc(invoiceDoc(invoiceId));
   if (!invoiceSnap.exists()) {

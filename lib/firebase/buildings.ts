@@ -14,6 +14,7 @@ import {
 } from './firestore';
 import type { BuildingFormData } from '@/lib/validators/building';
 import { addAuditEntry } from '@/lib/utils/audit';
+import { checkWriteAllowed, trackOfflineWrite } from '@/lib/sync/write-guard';
 
 interface CreateBuildingParams {
   data: BuildingFormData;
@@ -22,6 +23,7 @@ interface CreateBuildingParams {
 }
 
 export async function createBuilding({ data, userId, userName }: CreateBuildingParams) {
+  checkWriteAllowed();
   const now = Timestamp.now();
   const docRef = await addDoc(buildingsCollection, {
     ...data,
@@ -45,6 +47,7 @@ export async function createBuilding({ data, userId, userName }: CreateBuildingP
     details: { nameAr: data.nameAr, nameEn: data.nameEn },
   });
 
+  trackOfflineWrite();
   return docRef.id;
 }
 

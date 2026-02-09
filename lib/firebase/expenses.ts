@@ -20,6 +20,7 @@ import type { Expense } from '@/lib/types/models';
 import type { JournalEntry } from '@/lib/types/accounting';
 import { createExpenseEntry } from '@/lib/accounting/journal-engine';
 import { addAuditEntry } from '@/lib/utils/audit';
+import { checkWriteAllowed, trackOfflineWrite } from '@/lib/sync/write-guard';
 
 // === Category to Account Code Mapping ===
 
@@ -90,6 +91,7 @@ export async function createExpense({
   userId,
   userName,
 }: CreateExpenseParams) {
+  checkWriteAllowed();
   const timestamp = Timestamp.now();
 
   // Upload receipt if provided
@@ -166,5 +168,6 @@ export async function createExpense({
     },
   });
 
+  trackOfflineWrite();
   return { expenseId };
 }
