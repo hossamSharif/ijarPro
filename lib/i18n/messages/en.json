@@ -450,6 +450,11 @@
     "permissionDenied": "You do not have permission for this action",
     "notFound": "Not found"
   },
+  "offlinePage": {
+    "title": "You are offline",
+    "description": "This page is not available right now. Please check your internet connection and try again.",
+    "retry": "Try Again"
+  },
   "toasts": {
     "saved": "Saved successfully",
     "deleted": "Deleted successfully",
