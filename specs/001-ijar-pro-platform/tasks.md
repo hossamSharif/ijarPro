@@ -310,13 +310,13 @@
 
 ### Implementation for User Story 13
 
-- [ ] T132 [US13] Implement language toggle component in topbar that switches locale via next-intl routing (Arabic ↔ English) and persists preference
-- [ ] T133 [US13] Audit and update all pages to use next-intl `useTranslations()` for every user-facing string
-- [ ] T134 [US13] Audit all pages for Tailwind logical property compliance — replace any physical directional properties (ml/mr/pl/pr/left/right) with logical equivalents (ms/me/ps/pe/start/end)
-- [ ] T135 [US13] Implement dual Hijri + Gregorian date display throughout all date fields using lib/utils/dates.ts
-- [ ] T136 [US13] Implement Arabic-Indic numeral formatting in Arabic mode via lib/utils/numbers.ts across all numeric displays
-- [ ] T137 [US13] Implement SAR currency display (ر.س in Arabic, SAR in English) via lib/utils/currency.ts across all monetary amounts
-- [ ] T138 [US13] Verify bilingual input (Arabic + English) works on all form fields that appear on invoices/documents via components/shared/bilingual-input.tsx
+- [x] T132 [US13] Implement language toggle component in topbar that switches locale via next-intl routing (Arabic ↔ English) and persists preference
+- [x] T133 [US13] Audit and update all pages to use next-intl `useTranslations()` for every user-facing string
+- [x] T134 [US13] Audit all pages for Tailwind logical property compliance — replace any physical directional properties (ml/mr/pl/pr/left/right) with logical equivalents (ms/me/ps/pe/start/end)
+- [x] T135 [US13] Implement dual Hijri + Gregorian date display throughout all date fields using lib/utils/dates.ts
+- [x] T136 [US13] Implement Arabic-Indic numeral formatting in Arabic mode via lib/utils/numbers.ts across all numeric displays
+- [x] T137 [US13] Implement SAR currency display (ر.س in Arabic, SAR in English) via lib/utils/currency.ts across all monetary amounts
+- [x] T138 [US13] Verify bilingual input (Arabic + English) works on all form fields that appear on invoices/documents via components/shared/bilingual-input.tsx
 
 **Checkpoint**: Full bilingual experience with correct RTL/LTR, Hijri dates, Arabic numerals, SAR formatting
 
