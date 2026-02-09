@@ -19,6 +19,7 @@ import {
 import { useAuth } from '@/lib/hooks/use-auth';
 import { usersCollection } from '@/lib/firebase/firestore';
 import type { User } from '@/lib/types/models';
+import { TableSkeleton } from '@/components/shared/page-skeleton';
 
 export default function UsersPage() {
   const t = useTranslations('users');
@@ -46,11 +47,7 @@ export default function UsersPage() {
   }
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[50vh]">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      </div>
-    );
+    return <TableSkeleton rows={5} cols={7} />;
   }
 
   return (

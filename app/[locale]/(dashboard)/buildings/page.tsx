@@ -12,6 +12,7 @@ import { useCollection, type WithId } from '@/lib/hooks/use-firestore';
 import { buildingsCollection } from '@/lib/firebase/firestore';
 import type { Building } from '@/lib/types/models';
 import { formatNumber } from '@/lib/utils/numbers';
+import { TableSkeleton } from '@/components/shared/page-skeleton';
 import { Building as BuildingIcon, Plus } from 'lucide-react';
 
 export default function BuildingsPage() {
@@ -86,11 +87,7 @@ export default function BuildingsPage() {
   );
 
   if (loading) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <p className="text-muted-foreground">{tc('loading')}</p>
-      </div>
-    );
+    return <TableSkeleton rows={5} cols={7} />;
   }
 
   return (

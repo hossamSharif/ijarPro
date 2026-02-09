@@ -23,6 +23,7 @@ import type { Expense, Building } from '@/lib/types/models';
 import type { Company } from '@/lib/types/models';
 import { expensesCollection, buildingConverter, companyRef } from '@/lib/firebase/firestore';
 import { db } from '@/lib/firebase/config';
+import { TableSkeleton } from '@/components/shared/page-skeleton';
 
 type ExpenseWithId = Expense & { id: string };
 type BuildingWithId = Building & { id: string };
@@ -181,11 +182,7 @@ export default function ExpensesPage() {
   ];
 
   if (loading) {
-    return (
-      <div className="flex min-h-[400px] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      </div>
-    );
+    return <TableSkeleton rows={6} cols={7} />;
   }
 
   return (

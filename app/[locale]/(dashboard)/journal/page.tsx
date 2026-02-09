@@ -28,6 +28,7 @@ import { DataTable, type DataTableColumn } from '@/components/shared/data-table'
 import { ChartOfAccountsTree } from '@/components/accounting/chart-of-accounts';
 import { useAuth } from '@/lib/hooks/use-auth';
 import { formatCurrency } from '@/lib/utils/currency';
+import { TableSkeleton } from '@/components/shared/page-skeleton';
 import { formatShortDate } from '@/lib/utils/dates';
 import type { Building } from '@/lib/types/models';
 import type { JournalEntry, JournalEntryType, Account } from '@/lib/types/accounting';
@@ -279,11 +280,7 @@ export default function JournalPage() {
   ];
 
   if (loading) {
-    return (
-      <div className="flex min-h-[400px] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      </div>
-    );
+    return <TableSkeleton rows={6} cols={7} />;
   }
 
   return (

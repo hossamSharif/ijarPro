@@ -22,6 +22,7 @@ import { formatShortDate } from '@/lib/utils/dates';
 import type { Invoice, InvoiceStatus, Building } from '@/lib/types/models';
 import { invoicesCollection, buildingConverter } from '@/lib/firebase/firestore';
 import { db } from '@/lib/firebase/config';
+import { TableSkeleton } from '@/components/shared/page-skeleton';
 
 const ALL_STATUSES: InvoiceStatus[] = ['draft', 'issued', 'paid', 'partially_paid', 'overdue', 'cancelled'];
 
@@ -144,11 +145,7 @@ export default function InvoicesPage() {
   ];
 
   if (loading) {
-    return (
-      <div className="flex min-h-[400px] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      </div>
-    );
+    return <TableSkeleton rows={6} cols={6} />;
   }
 
   return (

@@ -30,6 +30,7 @@ import { formatCurrency } from '@/lib/utils/currency';
 import { formatNumber, formatPercentage } from '@/lib/utils/numbers';
 import { formatDualDate, formatShortDate } from '@/lib/utils/dates';
 import type { Invoice, InvoiceStatus, Company } from '@/lib/types/models';
+import { DetailSkeleton } from '@/components/shared/page-skeleton';
 
 const statusVariants: Record<InvoiceStatus, 'default' | 'secondary' | 'destructive' | 'outline'> = {
   draft: 'secondary',
@@ -74,11 +75,7 @@ export default function InvoiceDetailPage() {
   }, []);
 
   if (loading) {
-    return (
-      <div className="flex min-h-[400px] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      </div>
-    );
+    return <DetailSkeleton />;
   }
 
   if (!invoice) {

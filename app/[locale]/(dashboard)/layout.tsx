@@ -8,6 +8,7 @@ import { Sidebar } from '@/components/layout/sidebar';
 import { Topbar } from '@/components/layout/topbar';
 import { OfflineBanner } from '@/components/layout/offline-banner';
 import { SessionTimeoutDialog } from '@/components/layout/session-timeout-dialog';
+import { ErrorBoundary } from '@/components/shared/error-boundary';
 import { SidebarProvider } from '@/components/ui/sidebar';
 
 export default function DashboardLayout({
@@ -44,7 +45,9 @@ export default function DashboardLayout({
         <div className="flex flex-1 flex-col">
           <Topbar />
           <OfflineBanner />
-          <main className="flex-1 p-4 md:p-6">{children}</main>
+          <main className="flex-1 p-4 md:p-6">
+            <ErrorBoundary>{children}</ErrorBoundary>
+          </main>
         </div>
       </div>
       <SessionTimeoutDialog

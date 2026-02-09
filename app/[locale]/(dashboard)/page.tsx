@@ -21,6 +21,7 @@ import { formatCurrency } from '@/lib/utils/currency';
 import { formatNumber, formatPercentage } from '@/lib/utils/numbers';
 import { formatShortDate } from '@/lib/utils/dates';
 import { db } from '@/lib/firebase/config';
+import { DashboardSkeleton } from '@/components/shared/page-skeleton';
 import {
   buildingsCollection,
   invoicesCollection,
@@ -164,11 +165,7 @@ export default function DashboardPage() {
   }, [buildings, invoices, expenses]);
 
   if (loading) {
-    return (
-      <div className="flex min-h-[400px] items-center justify-center">
-        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
-      </div>
-    );
+    return <DashboardSkeleton />;
   }
 
   return (
