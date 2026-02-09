@@ -155,16 +155,16 @@ export default function InvoiceDetailPage() {
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">{t('supplyDate')}</span>
-              <span>{formatShortDate(invoice.supplyDate.toDate(), locale)}</span>
+              <span>{formatDualDate(invoice.supplyDate.toDate(), locale)}</span>
             </div>
             <div className="flex justify-between">
               <span className="text-muted-foreground">{t('rentalPeriod')}</span>
               <span>
-                {formatShortDate(invoice.rentalPeriodStart.toDate(), locale)}
+                {formatDualDate(invoice.rentalPeriodStart.toDate(), locale)}
                 {' '}
                 <ArrowRight className="inline h-3 w-3" />
                 {' '}
-                {formatShortDate(invoice.rentalPeriodEnd.toDate(), locale)}
+                {formatDualDate(invoice.rentalPeriodEnd.toDate(), locale)}
               </span>
             </div>
             {invoice.originalInvoiceNumber && (
