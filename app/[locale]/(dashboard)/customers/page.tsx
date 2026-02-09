@@ -124,6 +124,7 @@ export default function CustomersPage() {
         searchKey="nameAr"
         searchPlaceholder={tc('search')}
         onRowClick={(row) => router.push(`/customers/${row.id}`)}
+        emptyMessage={t('emptyState')}
       />
     </div>
   );

@@ -80,7 +80,8 @@
     "confirmDeactivate": "هل أنت متأكد من إلغاء تفعيل هذا المبنى؟",
     "cannotDeactivate": "لا يمكن إلغاء تفعيل المبنى لأن به شقق مشغولة",
     "apartments": "الشقق",
-    "noApartments": "لا توجد شقق مضافة بعد"
+    "noApartments": "لا توجد شقق مضافة بعد",
+    "emptyState": "لا توجد مبانٍ بعد. أضف أول مبنى للبدء."
   },
   "apartments": {
     "title": "الشقق",
@@ -134,7 +135,8 @@
     "searchNationalId": "بحث برقم الهوية",
     "vacant": "شاغرة",
     "occupied": "مرتبط",
-    "expiredIdsWarning": "يوجد {count} عميل(عملاء) بهوية منتهية الصلاحية. يرجى متابعة تجديد الهويات."
+    "expiredIdsWarning": "يوجد {count} عميل(عملاء) بهوية منتهية الصلاحية. يرجى متابعة تجديد الهويات.",
+    "emptyState": "لا يوجد عملاء بعد. أضف أول عميل لبدء إدارة المستأجرين."
   },
   "invoices": {
     "title": "الفواتير",
@@ -205,7 +207,8 @@
     },
     "creditNoteCreated": "تم إنشاء إشعار دائن",
     "newInvoiceCreated": "تم إنشاء فاتورة جديدة",
-    "originalInvoice": "الفاتورة الأصلية"
+    "originalInvoice": "الفاتورة الأصلية",
+    "emptyState": "لا توجد فواتير بعد. أنشئ أول فاتورة لبدء الفوترة."
   },
   "expenses": {
     "title": "المصروفات",

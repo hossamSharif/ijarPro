@@ -199,6 +199,7 @@ export default function InvoicesPage() {
         searchPlaceholder={t('invoiceNumber')}
         searchKey="invoiceNumber"
         onRowClick={(row) => router.push(`/invoices/${row.id}`)}
+        emptyMessage={t('emptyState')}
       />
     </div>
   );

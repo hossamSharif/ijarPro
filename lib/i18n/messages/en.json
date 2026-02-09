@@ -80,7 +80,8 @@
     "confirmDeactivate": "Are you sure you want to deactivate this building?",
     "cannotDeactivate": "Cannot deactivate building because it has occupied apartments",
     "apartments": "Apartments",
-    "noApartments": "No apartments added yet"
+    "noApartments": "No apartments added yet",
+    "emptyState": "No buildings yet. Add your first building to get started."
   },
   "apartments": {
     "title": "Apartments",
@@ -134,7 +135,8 @@
     "searchNationalId": "Search by National ID",
     "vacant": "Vacant",
     "occupied": "Linked",
-    "expiredIdsWarning": "{count} customer(s) have expired ID documents. Please follow up on ID renewals."
+    "expiredIdsWarning": "{count} customer(s) have expired ID documents. Please follow up on ID renewals.",
+    "emptyState": "No customers yet. Add your first customer to start managing tenants."
   },
   "invoices": {
     "title": "Invoices",
@@ -205,7 +207,8 @@
     },
     "creditNoteCreated": "Credit note created",
     "newInvoiceCreated": "New invoice created",
-    "originalInvoice": "Original Invoice"
+    "originalInvoice": "Original Invoice",
+    "emptyState": "No invoices yet. Create your first invoice to start billing."
   },
   "expenses": {
     "title": "Expenses",

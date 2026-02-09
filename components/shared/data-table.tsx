@@ -25,6 +25,7 @@ interface DataTableProps<T> {
   searchPlaceholder?: string;
   searchKey?: keyof T;
   onRowClick?: (row: T) => void;
+  emptyMessage?: React.ReactNode;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,6 +35,7 @@ export function DataTable<T extends Record<string, any>>({
   searchPlaceholder,
   searchKey,
   onRowClick,
+  emptyMessage,
 }: DataTableProps<T>) {
   const t = useTranslations('common');
   const [search, setSearch] = useState('');
@@ -133,7 +135,7 @@ export function DataTable<T extends Record<string, any>>({
             {sortedData.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={columns.length} className="h-24 text-center" role="status">
-                  {t('noResults')}
+                  {emptyMessage || t('noResults')}
                 </TableCell>
               </TableRow>
             ) : (

@@ -111,6 +111,7 @@ export default function BuildingsPage() {
         searchKey="nameAr"
         searchPlaceholder={tc('search')}
         onRowClick={(row) => router.push(`/buildings/${row.id}`)}
+        emptyMessage={t('emptyState')}
       />
     </div>
   );
