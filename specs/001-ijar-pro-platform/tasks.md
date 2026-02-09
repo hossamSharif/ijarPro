@@ -402,16 +402,16 @@
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] T163 Implement session timeout: auto-logout after configurable period (from company.sessionTimeout) with warning dialog
-- [ ] T164 Implement overdue invoice detection: scheduled check (or on-load check) to transition issued/partially_paid invoices past due date to overdue status
-- [ ] T165 [P] Add loading states and skeleton screens across all list pages and forms
-- [ ] T166 [P] Add error boundary components with user-friendly error messages and retry options
-- [ ] T167 [P] Add toast notifications (via sonner) for all CRUD operations success/failure across all pages
-- [ ] T168 Implement ID expiry warning: display warning on customer records where idExpiry has passed (per edge case)
-- [ ] T169 Implement configurable VAT rate: existing invoices retain original rate, new invoices use company.vatRate (per edge case)
-- [ ] T170 Audit all pages for performance: code-split per route via next/dynamic, verify bundle < 300KB initial JS
-- [ ] T171 Run Lighthouse audit and fix any PWA, performance, or accessibility issues (target: PWA 100%, Performance 90+)
-- [ ] T172 Run quickstart.md validation: verify all setup steps work for a fresh clone
+- [x] T163 Implement session timeout: auto-logout after configurable period (from company.sessionTimeout) with warning dialog
+- [x] T164 Implement overdue invoice detection: scheduled check (or on-load check) to transition issued/partially_paid invoices past due date to overdue status
+- [x] T165 [P] Add loading states and skeleton screens across all list pages and forms
+- [x] T166 [P] Add error boundary components with user-friendly error messages and retry options
+- [x] T167 [P] Add toast notifications (via sonner) for all CRUD operations success/failure across all pages
+- [x] T168 Implement ID expiry warning: display warning on customer records where idExpiry has passed (per edge case)
+- [x] T169 Implement configurable VAT rate: existing invoices retain original rate, new invoices use company.vatRate (per edge case)
+- [x] T170 Audit all pages for performance: code-split per route via next/dynamic, verify bundle < 300KB initial JS
+- [x] T171 Run Lighthouse audit and fix any PWA, performance, or accessibility issues (target: PWA 100%, Performance 90+)
+- [x] T172 Run quickstart.md validation: verify all setup steps work for a fresh clone
 
 ---
 
