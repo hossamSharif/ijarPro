@@ -41,7 +41,7 @@ export default function ProfilePage() {
     }
 
     if (newPassword.length < 8) {
-      toast.error(t('newPassword'));
+      toast.error(t('passwordMinLength'));
       return;
     }
 

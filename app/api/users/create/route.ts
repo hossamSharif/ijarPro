@@ -24,6 +24,21 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
+    // Validate role
+    if (role !== 'admin' && role !== 'user') {
+      return NextResponse.json({ error: 'Invalid role' }, { status: 400 });
+    }
+
+    // Validate password strength
+    if (typeof password !== 'string' || password.length < 8) {
+      return NextResponse.json({ error: 'Password must be at least 8 characters' }, { status: 400 });
+    }
+
+    // Validate email format
+    if (typeof email !== 'string' || !email.includes('@')) {
+      return NextResponse.json({ error: 'Invalid email format' }, { status: 400 });
+    }
+
     // Check username uniqueness
     const usernameCheck = await adminDb
       .collection('users')
@@ -72,8 +87,14 @@ export async function POST(request: NextRequest) {
     if (firebaseError.code === 'auth/email-already-exists') {
       return NextResponse.json({ error: 'Email already exists' }, { status: 409 });
     }
+    if (firebaseError.code === 'auth/weak-password') {
+      return NextResponse.json({ error: 'Password is too weak' }, { status: 400 });
+    }
+    if (firebaseError.code === 'auth/invalid-email') {
+      return NextResponse.json({ error: 'Invalid email address' }, { status: 400 });
+    }
 
-    console.error('User creation error:', firebaseError.message);
+    console.error('User creation error:', firebaseError.code, firebaseError.message);
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

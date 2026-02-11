@@ -9,7 +9,10 @@ import {
   orderBy,
   Timestamp,
   arrayUnion,
+  writeBatch,
+  doc,
 } from 'firebase/firestore';
+import { db } from './config';
 import {
   invoicesCollection,
   invoiceDoc,
@@ -320,7 +323,12 @@ export async function updateInvoice({
     ],
   };
 
-  const creditNoteRef = await addDoc(invoicesCollection, {
+  // Use batched write for atomicity
+  const batch = writeBatch(db);
+
+  // 1. Create credit note (pre-generate ID)
+  const creditNoteRef = doc(invoicesCollection);
+  batch.set(creditNoteRef, {
     ...creditNoteData,
     createdAt: timestamp,
     createdBy: userId,
@@ -328,8 +336,9 @@ export async function updateInvoice({
     updatedBy: userId,
   });
 
-  // 2. Create new debit invoice
-  const newInvoiceData: Omit<Invoice, 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy'> = {
+  // 2. Create new debit invoice (pre-generate ID)
+  const newInvoiceRef = doc(invoicesCollection);
+  batch.set(newInvoiceRef, {
     invoiceNumber: newInvoiceNumber,
     type: 'debit',
     status: 'issued',
@@ -355,10 +364,6 @@ export async function updateInvoice({
     statusHistory: [
       createStatusChange('issued', userId, `Replacement for ${original.invoiceNumber}`),
     ],
-  };
-
-  const newInvoiceRef = await addDoc(invoicesCollection, {
-    ...newInvoiceData,
     createdAt: timestamp,
     createdBy: userId,
     updatedAt: timestamp,
@@ -366,7 +371,7 @@ export async function updateInvoice({
   });
 
   // 3. Mark original as cancelled
-  await updateDoc(invoiceDoc(originalInvoiceId), {
+  batch.update(invoiceDoc(originalInvoiceId), {
     status: 'cancelled' as InvoiceStatus,
     cancellationReason: `Updated — see ${newInvoiceNumber}`,
     updatedAt: timestamp,
@@ -387,7 +392,8 @@ export async function updateInvoice({
     },
     originalInvoiceId
   );
-  await addDoc(journalEntriesCollection, {
+  const reversalJournalRef = doc(journalEntriesCollection);
+  batch.set(reversalJournalRef, {
     ...reversalEntry,
     entryType: 'invoice_update_reversal',
     description: `Reversal of ${original.invoiceNumber} (update)`,
@@ -395,21 +401,24 @@ export async function updateInvoice({
     referenceNumber: creditNoteNumber,
     createdAt: timestamp,
     createdBy: userId,
-  } as JournalEntry);
+  });
 
   // 5. Create new journal entry (for new invoice)
   const newEntry = createInvoiceEntry(
     { subtotal, vatAmount, total, invoiceNumber: newInvoiceNumber, buildingId: building.id },
     newInvoiceRef.id
   );
-  await addDoc(journalEntriesCollection, {
+  const newJournalRef = doc(journalEntriesCollection);
+  batch.set(newJournalRef, {
     ...newEntry,
     referenceId: newInvoiceRef.id,
     createdAt: timestamp,
     createdBy: userId,
-  } as JournalEntry);
+  });
 
-  // 6. Audit log entries
+  await batch.commit();
+
+  // Audit log (non-critical, ok outside batch)
   await addAuditEntry({
     userId,
     userName,
@@ -486,8 +495,12 @@ export async function cancelInvoice({
   };
   const creditNoteQr = generateZatcaBase64(creditNoteTlv);
 
-  // 1. Create credit note
-  const creditNoteData: Omit<Invoice, 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy'> = {
+  // Use batched write for atomicity
+  const batch = writeBatch(db);
+
+  // 1. Create credit note (pre-generate ID)
+  const creditNoteRef = doc(invoicesCollection);
+  batch.set(creditNoteRef, {
     invoiceNumber: creditNoteNumber,
     type: 'credit',
     status: 'issued',
@@ -514,10 +527,6 @@ export async function cancelInvoice({
     statusHistory: [
       createStatusChange('issued', userId, `Credit note for cancellation of ${invoice.invoiceNumber}`),
     ],
-  };
-
-  const creditNoteRef = await addDoc(invoicesCollection, {
-    ...creditNoteData,
     createdAt: timestamp,
     createdBy: userId,
     updatedAt: timestamp,
@@ -525,7 +534,7 @@ export async function cancelInvoice({
   });
 
   // 2. Mark original as cancelled
-  await updateDoc(invoiceDoc(invoiceId), {
+  batch.update(invoiceDoc(invoiceId), {
     status: 'cancelled' as InvoiceStatus,
     cancellationReason: reason,
     updatedAt: timestamp,
@@ -546,15 +555,18 @@ export async function cancelInvoice({
     },
     invoiceId
   );
-  await addDoc(journalEntriesCollection, {
+  const journalRef = doc(journalEntriesCollection);
+  batch.set(journalRef, {
     ...reversalEntry,
     referenceId: creditNoteRef.id,
     referenceNumber: creditNoteNumber,
     createdAt: timestamp,
     createdBy: userId,
-  } as JournalEntry);
+  });
 
-  // 4. Audit log
+  await batch.commit();
+
+  // Audit log (non-critical, ok outside batch)
   await addAuditEntry({
     userId,
     userName,
@@ -622,8 +634,11 @@ export async function recordPayment({
   const timestamp = Timestamp.now();
   const newPaidTotal = Math.round((currentPaid + amount) * 100) / 100;
 
+  // Use batched write for atomicity
+  const batch = writeBatch(db);
+
   // 1. Update invoice
-  await updateDoc(invoiceDoc(invoiceId), {
+  batch.update(invoiceDoc(invoiceId), {
     paymentAmount: newPaidTotal,
     paymentDate: timestamp,
     status: newStatus,
@@ -640,14 +655,17 @@ export async function recordPayment({
     invoiceId,
     amount
   );
-  await addDoc(journalEntriesCollection, {
+  const journalRef = doc(journalEntriesCollection);
+  batch.set(journalRef, {
     ...journalData,
     referenceId: invoiceId,
     createdAt: timestamp,
     createdBy: userId,
-  } as JournalEntry);
+  });
 
-  // 3. Audit log
+  await batch.commit();
+
+  // Audit log (non-critical, ok outside batch)
   await addAuditEntry({
     userId,
     userName,

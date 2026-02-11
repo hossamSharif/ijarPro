@@ -39,7 +39,7 @@ export default function CompanyProfilePage() {
   const t = useTranslations('settings');
   const tc = useTranslations('common');
   const tt = useTranslations('toasts');
-  const { firebaseUser, userProfile, isAdmin } = useAuth();
+  const { firebaseUser, userProfile, isAdmin, loading: authLoading } = useAuth();
   const [loading, setLoading] = useState(true);
   const [logoFile, setLogoFile] = useState<File | null>(null);
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
@@ -170,6 +170,14 @@ export default function CompanyProfilePage() {
       setUploadingLogo(false);
     }
   };
+
+  if (authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      </div>
+    );
+  }
 
   if (!isAdmin) {
     return (

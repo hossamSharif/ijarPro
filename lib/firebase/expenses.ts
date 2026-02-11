@@ -100,27 +100,25 @@ export async function createExpense({
     receiptFileName = receiptFile.name;
   }
 
-  // Build expense document
-  const expenseData: Omit<Expense, 'createdAt' | 'createdBy' | 'updatedAt' | 'updatedBy'> = {
+  // Build expense document — strip undefined fields (Firestore rejects undefined)
+  const expenseData: Record<string, unknown> = {
     date: Timestamp.fromDate(data.date),
     category: data.category,
     amount: data.amount,
-    vatAmount: data.vatAmount,
     description: data.description,
-    buildingId: data.buildingId,
-    apartmentId: data.apartmentId,
-    receiptUrl,
-    receiptFileName,
-  };
-
-  // Add expense document
-  const expenseRef = await addDoc(expensesCollection, {
-    ...expenseData,
     createdAt: timestamp,
     createdBy: userId,
     updatedAt: timestamp,
     updatedBy: userId,
-  });
+  };
+  if (data.vatAmount !== undefined) expenseData.vatAmount = data.vatAmount;
+  if (data.buildingId) expenseData.buildingId = data.buildingId;
+  if (data.apartmentId) expenseData.apartmentId = data.apartmentId;
+  if (receiptUrl) expenseData.receiptUrl = receiptUrl;
+  if (receiptFileName) expenseData.receiptFileName = receiptFileName;
+
+  // Add expense document
+  const expenseRef = await addDoc(expensesCollection, expenseData);
 
   const expenseId = expenseRef.id;
 
@@ -138,31 +136,36 @@ export async function createExpense({
     accountCode
   );
 
-  await addDoc(journalEntriesCollection, {
+  // Strip undefined from journal data before writing
+  const journalDoc: Record<string, unknown> = {
     ...journalData,
     referenceId: expenseId,
     date: timestamp,
     createdAt: timestamp,
     createdBy: userId,
-  } as JournalEntry);
+  };
+  Object.keys(journalDoc).forEach(k => journalDoc[k] === undefined && delete journalDoc[k]);
+  await addDoc(journalEntriesCollection, journalDoc as JournalEntry);
 
-  // Audit log
+  // Audit log — strip undefined values
+  const auditDetails: Record<string, unknown> = {
+    category: data.category,
+    amount: data.amount,
+    description: data.description,
+    hasReceipt: !!receiptFile,
+    accountCode,
+  };
+  if (data.vatAmount !== undefined) auditDetails.vatAmount = data.vatAmount;
+  if (data.buildingId) auditDetails.buildingId = data.buildingId;
+  if (data.apartmentId) auditDetails.apartmentId = data.apartmentId;
+
   await addAuditEntry({
     userId,
     userName,
     action: 'create',
     entityType: 'expenses',
     entityId: expenseId,
-    details: {
-      category: data.category,
-      amount: data.amount,
-      vatAmount: data.vatAmount,
-      description: data.description,
-      buildingId: data.buildingId,
-      apartmentId: data.apartmentId,
-      hasReceipt: !!receiptFile,
-      accountCode,
-    },
+    details: auditDetails,
   });
 
   trackOfflineWrite();

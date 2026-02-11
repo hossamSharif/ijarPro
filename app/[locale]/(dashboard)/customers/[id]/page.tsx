@@ -67,7 +67,7 @@ const editSchema = z.object({
   phone: z.string().regex(/^\+\d{10,15}$/, 'Must be E.164 format'),
   email: z.string().email().optional().or(z.literal('')),
   nationality: z.string().min(2).max(100),
-  idExpiry: z.date(),
+  idExpiry: z.date().optional(),
   notes: z.string().max(2000).optional(),
 });
 
@@ -152,7 +152,7 @@ export default function CustomerDetailPage() {
           phone: customer.phone,
           email: customer.email || '',
           nationality: customer.nationality,
-          idExpiry: customer.idExpiry.toDate(),
+          idExpiry: customer.idExpiry?.toDate(),
           notes: customer.notes || '',
         }
       : undefined,
@@ -249,7 +249,7 @@ export default function CustomerDetailPage() {
     }
   };
 
-  const isIdExpired = customer && customer.idExpiry.toDate() < new Date();
+  const isIdExpired = customer?.idExpiry && customer.idExpiry.toDate() < new Date();
 
   // Invoice history columns
   const invoiceColumns: DataTableColumn<WithId<Invoice>>[] = useMemo(
@@ -488,12 +488,14 @@ export default function CustomerDetailPage() {
                 <p className="text-sm text-muted-foreground">{t('nationality')}</p>
                 <p className="font-medium">{customer.nationality}</p>
               </div>
+              {customer.idExpiry && (
               <div>
                 <p className="text-sm text-muted-foreground">{t('idExpiry')}</p>
                 <p className="font-medium">
                   {formatDualDate(customer.idExpiry.toDate(), locale)}
                 </p>
               </div>
+              )}
               {customer.notes && (
                 <div className="sm:col-span-2">
                   <p className="text-sm text-muted-foreground">{t('notes')}</p>

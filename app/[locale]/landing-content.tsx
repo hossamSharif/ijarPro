@@ -4,6 +4,7 @@ import { useTranslations, useLocale } from 'next-intl';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useEffect, useRef } from 'react';
+import { useAuth } from '@/lib/hooks/use-auth';
 import {
   Building2,
   FileText,
@@ -104,6 +105,14 @@ export function LandingContent() {
   const router = useRouter();
   const pathname = usePathname();
   const scrollRef = useScrollReveal();
+  const { isAuthenticated, loading: authLoading } = useAuth();
+
+  // Redirect authenticated users to dashboard
+  useEffect(() => {
+    if (!authLoading && isAuthenticated) {
+      router.push('/dashboard');
+    }
+  }, [authLoading, isAuthenticated, router]);
 
   const toggleLocale = () => {
     const newLocale = locale === 'ar' ? 'en' : 'ar';

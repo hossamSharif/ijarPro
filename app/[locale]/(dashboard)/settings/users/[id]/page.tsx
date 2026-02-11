@@ -36,7 +36,7 @@ export default function UserDetailPage() {
   const router = useRouter();
   const params = useParams();
   const userId = params.id as string;
-  const { firebaseUser, userProfile, isAdmin } = useAuth();
+  const { firebaseUser, userProfile, isAdmin, loading: authLoading } = useAuth();
 
   const [user, setUser] = useState<(User & { id: string }) | null>(null);
   const [loading, setLoading] = useState(true);
@@ -122,6 +122,14 @@ export default function UserDetailPage() {
       setShowActivateDialog(false);
     }
   };
+
+  if (authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      </div>
+    );
+  }
 
   if (!isAdmin) {
     return (

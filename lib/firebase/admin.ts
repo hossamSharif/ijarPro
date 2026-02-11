@@ -11,11 +11,20 @@ function getAdminApp() {
     ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
     : undefined;
 
-  return initializeApp(
-    serviceAccount
-      ? { credential: cert(serviceAccount as ServiceAccount) }
-      : undefined
-  );
+  if (serviceAccount) {
+    return initializeApp({ credential: cert(serviceAccount as ServiceAccount) });
+  }
+
+  // Fallback: use project ID from client config for ADC or emulator
+  const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  if (!projectId) {
+    throw new Error(
+      'Firebase Admin SDK requires FIREBASE_SERVICE_ACCOUNT env var. ' +
+      'Set it to the JSON contents of your service account key.'
+    );
+  }
+
+  return initializeApp({ projectId });
 }
 
 const adminApp = getAdminApp();

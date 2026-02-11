@@ -34,7 +34,7 @@ export default function NewUserPage() {
   const te = useTranslations('errors');
   const tt = useTranslations('toasts');
   const router = useRouter();
-  const { firebaseUser, userProfile, isAdmin } = useAuth();
+  const { firebaseUser, userProfile, isAdmin, loading: authLoading } = useAuth();
 
   const form = useForm<CreateUserFormData>({
     resolver: zodResolver(createUserSchema),
@@ -72,6 +72,14 @@ export default function NewUserPage() {
       }
     }
   };
+
+  if (authLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[50vh]">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent" />
+      </div>
+    );
+  }
 
   if (!isAdmin) {
     return (

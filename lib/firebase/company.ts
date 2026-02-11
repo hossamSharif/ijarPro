@@ -26,15 +26,17 @@ interface UpdateCompanyParams {
 export async function updateCompanyProfile({ data, userId, userName }: UpdateCompanyParams) {
   const now = Timestamp.now();
 
-  await setDoc(
-    companyRef,
-    {
-      ...data,
-      updatedAt: now,
-      updatedBy: userId,
-    },
-    { merge: true }
-  );
+  const writeData: Record<string, unknown> = {
+    ...data,
+    updatedAt: now,
+    updatedBy: userId,
+  };
+  // Remove undefined fields — Firestore rejects them
+  Object.keys(writeData).forEach((key) => {
+    if (writeData[key] === undefined) delete writeData[key];
+  });
+
+  await setDoc(companyRef, writeData, { merge: true });
 
   // Ensure createdAt/createdBy exist on first write
   const snap = await getDoc(companyRef);

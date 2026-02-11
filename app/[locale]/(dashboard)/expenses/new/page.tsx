@@ -150,8 +150,9 @@ export default function NewExpensePage() {
 
       toast.success(t('expenseCreated'));
       router.push('/expenses');
-    } catch {
-      toast.error(tToasts('error'));
+    } catch (err) {
+      console.error('[ExpenseCreate] Error:', err);
+      toast.error(err instanceof Error ? err.message : tToasts('error'));
     }
   };
 

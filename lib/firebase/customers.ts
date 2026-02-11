@@ -61,15 +61,26 @@ export async function createCustomer({ data, userId, userName }: CreateCustomerP
   }
 
   const now = Timestamp.now();
-  const docRef = await addDoc(customersCollection, {
+  const customerData: Record<string, unknown> = {
     ...data,
-    idExpiry: Timestamp.fromDate(data.idExpiry),
     isActive: true,
     createdAt: now,
     createdBy: userId,
     updatedAt: now,
     updatedBy: userId,
+  };
+  if (data.idExpiry) {
+    customerData.idExpiry = Timestamp.fromDate(data.idExpiry);
+  } else {
+    delete customerData.idExpiry;
+  }
+  // Remove undefined optional fields to avoid Firestore rejection
+  Object.keys(customerData).forEach((key) => {
+    if (customerData[key] === undefined) delete customerData[key];
   });
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const docRef = await addDoc(customersCollection, customerData as any);
 
   await addAuditEntry({
     userId,

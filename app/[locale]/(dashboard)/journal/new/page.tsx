@@ -101,7 +101,8 @@ export default function NewJournalEntryPage() {
       if (err instanceof Error && err.message.includes('debits must equal')) {
         toast.error(t('balanceError'));
       } else {
-        toast.error(tToasts('error'));
+        console.error('[JournalCreate] Error:', err);
+        toast.error(err instanceof Error ? err.message : tToasts('error'));
       }
     }
   };

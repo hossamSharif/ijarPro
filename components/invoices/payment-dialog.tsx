@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
@@ -52,6 +52,13 @@ export function PaymentDialog({ invoice, userId, userName, locale }: PaymentDial
       amount: remaining,
     },
   });
+
+  // Reset form with current remaining balance when dialog opens
+  useEffect(() => {
+    if (open) {
+      reset({ amount: remaining });
+    }
+  }, [open, remaining, reset]);
 
   const onSubmit = async (data: PaymentFormData) => {
     if (data.amount > remaining) {

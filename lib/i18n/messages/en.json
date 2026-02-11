@@ -463,6 +463,7 @@
     "confirmPassword": "Confirm Password",
     "passwordChanged": "Password changed successfully",
     "passwordMismatch": "Passwords do not match",
+    "passwordMinLength": "Password must be at least 8 characters",
     "wrongPassword": "Current password is incorrect"
   },
   "language": {

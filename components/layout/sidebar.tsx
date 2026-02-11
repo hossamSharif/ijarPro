@@ -40,7 +40,7 @@ export function Sidebar() {
   const canViewReports = usePermission('canViewReports');
 
   const mainNav = [
-    { href: '/', label: t('dashboard'), icon: LayoutDashboard, show: true },
+    { href: '/dashboard', label: t('dashboard'), icon: LayoutDashboard, show: true },
     { href: '/buildings', label: t('buildings'), icon: Building2, show: canManageBuildings || isAdmin },
     { href: '/customers', label: t('customers'), icon: Users, show: canManageCustomers || isAdmin },
     { href: '/invoices', label: t('invoices'), icon: FileText, show: true },
@@ -57,7 +57,7 @@ export function Sidebar() {
   return (
     <SidebarUI>
       <SidebarHeader className="border-b px-4 py-3">
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/dashboard" className="flex items-center gap-2">
           <DoorOpen className="h-6 w-6 text-primary" />
           <span className="text-lg font-bold">{tCommon('appName')}</span>
         </Link>

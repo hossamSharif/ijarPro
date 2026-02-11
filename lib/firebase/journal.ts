@@ -67,35 +67,50 @@ export async function createManualJournalEntry({
     throw new Error('Total debits must equal total credits');
   }
 
-  const entryData: JournalEntry = {
+  // Strip undefined fields — Firestore rejects undefined values
+  const cleanLines = data.lines.map(line => {
+    const clean: Record<string, unknown> = {
+      accountId: line.accountId,
+      accountNameAr: line.accountNameAr,
+      accountNameEn: line.accountNameEn,
+      debit: line.debit,
+      credit: line.credit,
+    };
+    if (line.description) clean.description = line.description;
+    return clean;
+  });
+
+  const entryData: Record<string, unknown> = {
     date: Timestamp.fromDate(data.date),
     description: data.description,
     entryType: 'manual',
-    buildingId: data.buildingId,
-    lines: data.lines,
+    lines: cleanLines,
     totalDebits,
     totalCredits,
     createdAt: timestamp,
     createdBy: userId,
   };
+  if (data.buildingId) entryData.buildingId = data.buildingId;
 
-  const ref = await addDoc(journalEntriesCollection, entryData);
+  const ref = await addDoc(journalEntriesCollection, entryData as JournalEntry);
 
   // Audit log
+  const auditDetails: Record<string, unknown> = {
+    entryType: 'manual',
+    description: data.description,
+    totalDebits,
+    totalCredits,
+    lineCount: data.lines.length,
+  };
+  if (data.buildingId) auditDetails.buildingId = data.buildingId;
+
   await addAuditEntry({
     userId,
     userName,
     action: 'create',
     entityType: 'journalEntries',
     entityId: ref.id,
-    details: {
-      entryType: 'manual',
-      description: data.description,
-      totalDebits,
-      totalCredits,
-      lineCount: data.lines.length,
-      buildingId: data.buildingId,
-    },
+    details: auditDetails,
   });
 
   return { entryId: ref.id };
